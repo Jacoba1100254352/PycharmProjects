@@ -1,0 +1,20 @@
+dataset <- c(45.9, 61.2, 73.3, 21.8, 63.4, 64.6,
+             48.4, 48.8, 48.5, 67.8, 60, 63.4,
+             76, 89.4, 73.3, 67.3, 61.3, 62.4)
+summary <- summary(dataset)
+ans4 <- sd(dataset)
+
+ans7 <- dbinom(7, 10, 0.6)
+ans8 <- pbinom(2, 10, 0.6)
+ans9 <- 1 - pbinom(5, 10, 0.6)
+ans10 <- pbinom(6, 10, 0.6) - pbinom(4, 10, 0.6) #dbinom(6, 10, 0.6) + dbinom(5, 10, 0.6)
+ans11 <- dpois(4, 4)
+ans12 <- dpois(8, 12)
+ans13 <- 1 - pnorm(200, 192, 6.5) # pnorm(200, 192, 6.5, lower.tail = FALSE)
+ans14 <- pnorm(200, 192, 6.5) - pnorm(180, 192, 6.5)
+ans15 <- qnorm(0.1, 192, 6.5)
+ans16 <- qnorm(0.9, 192, 6.5)
+ans17 <- pnorm((14 - 15) / (4/sqrt(64)))
+ans18 <- qnorm(0.8, 15, 4/sqrt(64))
+ans19 <- qnorm(0.025, 15, 4/sqrt(64))
+ans20 <- qnorm(0.975, 15, 4/sqrt(64))
