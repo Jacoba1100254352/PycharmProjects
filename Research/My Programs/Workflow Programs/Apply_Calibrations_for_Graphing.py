@@ -52,35 +52,36 @@ def write_updated_data_to_csv(filename, data):
     print(f"Updated data saved to {filename}")
 
 
-# Read both initial and new coefficients
-new_coefficients = read_coefficients(
-    f"{WORKING_DIR}Coefficients/Sensor Set {SENSOR_SET}/New Coefficients.txt"
-)
-
-for sensor_num in range(1, NUM_SENSORS + 1):
-    # Parse the Arduino data
-    aligned_data_filename = f"{WORKING_DIR}Aligned Arduino Data/Sensor Set {SENSOR_SET}/Aligned Test {TEST_NUM} Sensor {sensor_num}.csv"
-    aligned_arduino_data = pd.read_csv(aligned_data_filename)
-
-    # Get initial and new coefficients for the current sensor
-    # m_new, c_new = new_coefficients[i - 1]
-
-    # Apply the new calibration coefficients to the force readings
-    for j in range(4):
-        aligned_arduino_data[f"Force{j + 1}"] = round(
-            new_coefficients[j][0] * aligned_arduino_data[f"ADC{j + 1}"]
-            + new_coefficients[j][1],
-            2,
-        )
-
-    # Update Total Force value (N)
-    aligned_arduino_data["TotalForce1"] = sum(
-        [aligned_arduino_data[f"Force{j + 1}"] for j in range(4)]
+def apply_calibration_coefficients():
+    # Read both initial and new coefficients
+    new_coefficients = read_coefficients(
+        f"{WORKING_DIR}Coefficients/Sensor Set {SENSOR_SET}/New Coefficients.txt"
     )
 
-    # Set Total Force (kPa) to 0 for now
-    aligned_arduino_data["TotalForce2"] = 0
+    for sensor_num in range(1, NUM_SENSORS + 1):
+        # Parse the Arduino data
+        aligned_data_filename = f"{WORKING_DIR}Aligned Arduino Data/Sensor Set {SENSOR_SET}/Aligned Test {TEST_NUM} Sensor {sensor_num}.csv"
+        aligned_arduino_data = pd.read_csv(aligned_data_filename)
 
-    # Write the updated Arduino data to a new CSV file
-    updated_csv_filename = f"{WORKING_DIR}Updated Arduino Data/Sensor Set {SENSOR_SET}/Updated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
-    write_updated_data_to_csv(updated_csv_filename, aligned_arduino_data)
+        # Get initial and new coefficients for the current sensor
+        # m_new, c_new = new_coefficients[i - 1]
+
+        # Apply the new calibration coefficients to the force readings
+        for j in range(4):
+            aligned_arduino_data[f"Force{j + 1}"] = round(
+                new_coefficients[j][0] * aligned_arduino_data[f"ADC{j + 1}"]
+                + new_coefficients[j][1],
+                2,
+            )
+
+        # Update Total Force value (N)
+        aligned_arduino_data["TotalForce1"] = sum(
+            [aligned_arduino_data[f"Force{j + 1}"] for j in range(4)]
+        )
+
+        # Set Total Force (kPa) to 0 for now
+        aligned_arduino_data["TotalForce2"] = 0
+
+        # Write the updated Arduino data to a new CSV file
+        updated_csv_filename = f"{WORKING_DIR}Updated Arduino Data/Sensor Set {SENSOR_SET}/Updated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
+        write_updated_data_to_csv(updated_csv_filename, aligned_arduino_data)

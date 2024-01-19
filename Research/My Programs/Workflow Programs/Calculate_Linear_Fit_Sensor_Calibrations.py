@@ -80,42 +80,43 @@ def write_output_to_file(filename, coefficients):
         print(f"New coefficients: {formatted_data}")
 
 
-# Modified loop over sensors and tests to process the data
-new_coefficients_corrected = []
+def calculate_coefficients():
+    # Modified loop over sensors and tests to process the data
+    new_coefficients_corrected = []
 
-for testNum in range(1, NUM_TESTS + 1):
-    for sensorNum in range(1, NUM_SENSORS + 1):
-        # Load the Excel data
-        excel_data = pd.read_excel(
-            f"{WORKING_DIR}Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/{CALIBRATION_PREFIX}Test {testNum}.xlsx",
-            sheet_name=f"Sensor {sensorNum}",
-        )
-        excel_time = excel_data["Time [s]"].values
-        excel_force = [abs(value) for value in excel_data["Force [N]"].values]
+    for testNum in range(1, NUM_TESTS + 1):
+        for sensorNum in range(1, NUM_SENSORS + 1):
+            # Load the Excel data
+            excel_data = pd.read_excel(
+                f"{WORKING_DIR}Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/{CALIBRATION_PREFIX}Test {testNum}.xlsx",
+                sheet_name=f"Sensor {sensorNum}",
+            )
+            excel_time = excel_data["Time [s]"].values
+            excel_force = [abs(value) for value in excel_data["Force [N]"].values]
 
-        # Parse the Arduino data
-        arduino_time, arduino_raw_force, arduino_force_N = parse_arduino_data(
-            f"{WORKING_DIR}{ARDUINO_DIR}{CALIBRATION_PREFIX}Test {testNum} Sensor {sensorNum}.txt"
-        )
+            # Parse the Arduino data
+            arduino_time, arduino_raw_force, arduino_force_N = parse_arduino_data(
+                f"{WORKING_DIR}{ARDUINO_DIR}{CALIBRATION_PREFIX}Test {testNum} Sensor {sensorNum}.txt"
+            )
 
-        # Adjust timestamps
-        excel_start_idx = find_rising_edge(excel_force)
-        arduino_start_idx = find_rising_edge(arduino_force_N)
-        time_shift = excel_time[excel_start_idx] - arduino_time[arduino_start_idx]
-        adjusted_arduino_time = [time + time_shift for time in arduino_time]
+            # Adjust timestamps
+            excel_start_idx = find_rising_edge(excel_force)
+            arduino_start_idx = find_rising_edge(arduino_force_N)
+            time_shift = excel_time[excel_start_idx] - arduino_time[arduino_start_idx]
+            adjusted_arduino_time = [time + time_shift for time in arduino_time]
 
-        # Interpolate Arduino data to have common time points with Excel data
-        interpolated_arduino_force = np.interp(
-            excel_time, adjusted_arduino_time, arduino_raw_force
-        )
+            # Interpolate Arduino data to have common time points with Excel data
+            interpolated_arduino_force = np.interp(
+                excel_time, adjusted_arduino_time, arduino_raw_force
+            )
 
-        # Calculate new m and c values using Excel data and interpolated Arduino data
-        m_new, c_new = calculate_linear_fit(excel_force, interpolated_arduino_force)
+            # Calculate new m and c values using Excel data and interpolated Arduino data
+            m_new, c_new = calculate_linear_fit(excel_force, interpolated_arduino_force)
 
-        new_coefficients_corrected.append((m_new, c_new))
+            new_coefficients_corrected.append((m_new, c_new))
 
-# Write the corrected new coefficients for all sensors to a file
-write_output_to_file(
-    f"{WORKING_DIR}Coefficients/Sensor Set {SENSOR_SET}/New Coefficients.txt",
-    new_coefficients_corrected,
-)
+    # Write the corrected new coefficients for all sensors to a file
+    write_output_to_file(
+        f"{WORKING_DIR}Coefficients/Sensor Set {SENSOR_SET}/New Coefficients.txt",
+        new_coefficients_corrected,
+    )

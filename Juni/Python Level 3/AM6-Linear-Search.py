@@ -1,10 +1,10 @@
-def linearSearch(l, v):
-    for item in l:
-        if item == v:
+def linearSearch(arr, val):
+    for item in arr:
+        if item == val:
             return True
     return False
 
 
-l = [1, 2, 3, 4, 5]
-print(linearSearch(l, 4))
-print(linearSearch(l, 6))
+nums = [1, 2, 3, 4, 5]
+print(linearSearch(nums, 4))
+print(linearSearch(nums, 6))

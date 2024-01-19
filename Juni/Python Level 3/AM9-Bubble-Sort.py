@@ -3,6 +3,7 @@ import random
 
 def bubbleSort(lst):
     for i in range(0, len(lst)):
+        x = 0
         for j in range(0, len(lst) - 1):
             if lst[j] > lst[j + 1]:
                 temp = lst[j]

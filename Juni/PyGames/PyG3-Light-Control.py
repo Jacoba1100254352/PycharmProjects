@@ -1,4 +1,5 @@
-import sys, pgzrun
+import pgzrun
+import sys
 
 mod = sys.modules['__main__']
 

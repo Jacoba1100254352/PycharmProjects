@@ -86,11 +86,14 @@ def align_and_save_arduino_data(sensor_num, instron_data, arduino_data, aligned_
 
 
 # Load and align data
-for sensor_num in range(1, NUM_SENSORS + 1):
-    instron_filename = f"{WORKING_DIR}{EXCEL_DIR}{SENSOR_SET_DIR}Interpolated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
-    instron_data = pd.read_csv(instron_filename)
-    original_arduino_data_filename = f"{WORKING_DIR}{ARDUINO_DIR}{SENSOR_SET_DIR}{CALIBRATION_PREFIX}Test {TEST_NUM} Sensor {sensor_num}.csv"
-    original_arduino_data = pd.read_csv(original_arduino_data_filename)
+def align_data():
+    for sensor_num in range(1, NUM_SENSORS + 1):
+        instron_filename = f"{WORKING_DIR}{EXCEL_DIR}{SENSOR_SET_DIR}Interpolated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
+        instron_data = pd.read_csv(instron_filename)
+        original_arduino_data_filename = f"{WORKING_DIR}{ARDUINO_DIR}{SENSOR_SET_DIR}{CALIBRATION_PREFIX}Test {TEST_NUM} Sensor {sensor_num}.csv"
+        original_arduino_data = pd.read_csv(original_arduino_data_filename)
 
-    aligned_data_filename = f"{WORKING_DIR}{ALIGNED_DATA_DIR}{SENSOR_SET_DIR}Aligned Test {TEST_NUM} Sensor {sensor_num}.csv"
-    align_and_save_arduino_data(sensor_num, instron_data, original_arduino_data, aligned_data_filename, PERCENTILE)
+        aligned_data_filename = f"{WORKING_DIR}{ALIGNED_DATA_DIR}{SENSOR_SET_DIR}Aligned Test {TEST_NUM} Sensor {sensor_num}.csv"
+        align_and_save_arduino_data(sensor_num, instron_data, original_arduino_data, aligned_data_filename, PERCENTILE)
+
+align_data()

@@ -50,7 +50,7 @@ def printMap(x, y):
         Row = Row[leftMostPos:(x+3)*3-2+len(color('0'))-1]
       else:
         Row = Row[leftMostPos:(x+3)*3-2]
-      print(f"{Row}")
+      print(Row)
 
   #for i in range(len(Map[0])):
   #  print("_", end="")

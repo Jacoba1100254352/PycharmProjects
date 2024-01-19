@@ -99,6 +99,7 @@ def read_and_process_arduino_data(sensor_num):
 
 
 # Process data for each sensor
-for sensor_num in range(1, NUM_SENSORS + 1):
-    read_and_process_instron_data(sensor_num)
-    read_and_process_arduino_data(sensor_num)
+def write_raw_data_to_csv():
+    for sensor_num in range(1, NUM_SENSORS + 1):
+        read_and_process_instron_data(sensor_num)
+        read_and_process_arduino_data(sensor_num)
