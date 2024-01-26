@@ -1,20 +1,10 @@
 import numpy as np
 import pandas as pd
+from File_Paths import *
 
-# Define Global constants
-SENSOR_SET = 1
-TEST_NUM = 2
-NUM_SENSORS = 4
-WORKING_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/Calibration Tests/"
+NUM_SENSORS_OFFSET = 4
 
-# Define file directory and naming conventions
-EXCEL_DIR = "Raw Test Data (Excel)/"
-SENSOR_SET_DIR = f"Sensor Set {SENSOR_SET}/"
-ARDUINO_DIR = f"Arduino Data/{SENSOR_SET_DIR}"
-CALIBRATION_PREFIX = "Calibration "
-
-
-def parse_arduino_line(line):
+def parse_arduino_line(line, sensor_num=None):
     """Parse a line of Arduino data."""
     values = line.replace(",\t\t", ",").strip().split(",")
 
@@ -23,12 +13,23 @@ def parse_arduino_line(line):
         print(f"Ignoring invalid values -> {values}")
         return []
 
-    timestamp = round(float(values[0]) / 1000, 2)
-    adc_readings = list(map(int, values[1:5]))
-    force_values = list(map(float, values[5:9]))
-    total_values = list(map(float, values[9:11]))
+    #
+    timestamp = [round(float(values[0]) / 1000, 2)]
 
-    return [timestamp] + adc_readings + force_values + total_values
+    if SIMPLIFY:
+        if sensor_num is not None and 0 <= sensor_num < len(values):
+            adc_readings = [int(values[sensor_num])]
+            force_values = [float(values[sensor_num + NUM_SENSORS_OFFSET])]
+        else:
+            print("Invalid sensor number")
+            return []
+    else:
+        adc_readings = list(map(int, values[1:5]))
+        force_values = list(map(float, values[5:9]))
+
+    total_values = [] if SIMPLIFY else list(map(float, values[9:11]))
+
+    return timestamp + adc_readings + force_values + total_values
 
 
 def interpolate_instron_data(instron_data):
@@ -58,43 +59,53 @@ def write_to_csv(filename, df):
 
 def read_and_process_instron_data(sensor_num):
     """Read Instron data from an Excel file and process it."""
-    excel_filename = f"{WORKING_DIR}{EXCEL_DIR}{SENSOR_SET_DIR.format(SENSOR_SET)}Calibration Test {TEST_NUM}.xlsx"
+    excel_filename = f"{WORKING_DIR}{INSTRON_DIR}Calibration Test {TEST_NUM}.xlsx"
     instron_data = pd.read_excel(excel_filename, sheet_name=f"Sensor {sensor_num}")
     interpolated_instron_data = interpolate_instron_data(instron_data)
-    instron_csv_filename = f"{WORKING_DIR}{EXCEL_DIR}{SENSOR_SET_DIR}Interpolated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
+    instron_csv_filename = f"{WORKING_DIR}{INSTRON_DIR}Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
     write_to_csv(instron_csv_filename, interpolated_instron_data)
 
 
 def write_updated_data_to_csv(filename, data):
     """Write sensor data to a CSV file."""
-    df = pd.DataFrame(
-        data,
-        columns=[
-            "Timestamp",
-            "ADC1",
-            "ADC2",
-            "ADC3",
-            "ADC4",
-            "Force1",
-            "Force2",
-            "Force3",
-            "Force4",
-            "TotalForce1",
-            "TotalForce2",
-        ],
-    )
+    if SIMPLIFY:
+        df = pd.DataFrame(
+            data,
+            columns=[
+                "Time [s]",
+                "ADC",
+                "Force [N]",
+            ],
+        )
+    else:
+        df = pd.DataFrame(
+            data,
+            columns=[
+                "Time [s]",
+                "ADC1",
+                "ADC2",
+                "ADC3",
+                "ADC4",
+                "Force1 [N]",
+                "Force2 [N]",
+                "Force3 [N]",
+                "Force4 [N]",
+                "TotalForce1 [N]",
+                "TotalForce2 [N]",
+            ],
+        )
     df.to_csv(filename, index=False)
-    print(f"Arduino data saved to {filename}")
+    print(f"Data successfully saved to {filename}")
 
 
 def read_and_process_arduino_data(sensor_num):
     """Read Arduino data from a text file and process it."""
-    arduino_filename = f"{WORKING_DIR}{ARDUINO_DIR.format(SENSOR_SET)}{CALIBRATION_PREFIX}Test {TEST_NUM} Sensor {sensor_num}.txt"
+    arduino_filename = f"{WORKING_DIR}{ARDUINO_DIR}Calibration Test {TEST_NUM} Sensor {sensor_num}.txt"
     with open(arduino_filename, "r") as file:
         arduino_data = [
-            parse_arduino_line(line) for line in file if parse_arduino_line(line)
+            parse_arduino_line(line, sensor_num) for line in file if parse_arduino_line(line, sensor_num)
         ]
-    arduino_csv_filename = f"{WORKING_DIR}{ARDUINO_DIR.format(SENSOR_SET)}{CALIBRATION_PREFIX}Test {TEST_NUM} Sensor {sensor_num}.csv"
+    arduino_csv_filename = f"{WORKING_DIR}{ARDUINO_DIR}Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
     write_updated_data_to_csv(arduino_csv_filename, arduino_data)
 
 

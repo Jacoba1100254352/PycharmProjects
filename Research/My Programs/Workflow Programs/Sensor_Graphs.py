@@ -1,54 +1,27 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# Define Global constants
-SENSOR_SET = 1
-NUM_SENSORS = 4
-TEST_NUM = 2
-BASE_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/"
-
-# Calibration and graphing flags
-calibration = True
-graph_uncalibrated = False
-
-# Adjusting directory paths based on calibration flag
-PLOT_DIR = "Calibration Tests/Data Plots/" if calibration else "Data Plots/"
-EXCEL_DIR = (
-    "Calibration Tests/Raw Test Data (Excel)/"
-    if calibration
-    else "Raw Test Data (Excel)/"
-)
-CALIBRATION_PREFIX = "Calibration " if calibration else ""
-UNCALIBRATED_DIR = (
-    f"Calibration Tests/Arduino Data/Sensor Set {SENSOR_SET}/"
-    if calibration
-    else f"Arduino Data/Sensor Set {SENSOR_SET}/"
-)
-CALIBRATED_DIR = (
-    f"Calibration Tests/Updated Arduino Data/Sensor Set {SENSOR_SET}/"
-    if calibration
-    else f"Updated Arduino Data/Sensor Set {SENSOR_SET}/"
-)
+from File_Paths import *
 
 
 # Running the plotting for each sensor
 def graph_sensor_data():
     for sensor_num in range(1, NUM_SENSORS + 1):
         # Load the Excel data
-        excel_filename = f"{BASE_DIR}{EXCEL_DIR}Sensor Set {SENSOR_SET}/{CALIBRATION_PREFIX}Test {TEST_NUM}.xlsx"
-        instron_data = pd.read_excel(excel_filename, sheet_name=f"Sensor {sensor_num}")
+        instron_data = pd.read_csv(
+            f"{WORKING_DIR}{INSTRON_DIR}Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv",
+        )
         instron_time = instron_data["Time [s]"].values
         instron_force = abs(instron_data["Force [N]"].values)
 
         # Load updated Arduino data
-        updated_data_filename = f"{BASE_DIR}{CALIBRATED_DIR}Updated Calibration Test {TEST_NUM} Sensor {sensor_num}.csv"
-        updated_data = pd.read_csv(updated_data_filename)
+        updated_arduino_data_filename = f"{WORKING_DIR}{CALIBRATED_DIR}Updated Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        updated_arduino_data = pd.read_csv(updated_arduino_data_filename)
 
         # Ensure the column names match those in your CSV
         updated_arduino_time, updated_arduino_force = (
-            updated_data["Timestamp"],
-            updated_data[f"Force{sensor_num}"],
+            updated_arduino_data["Time [s]"],
+            updated_arduino_data["Force [N]" if SIMPLIFY else f"Force{sensor_num} [N]"],
         )
 
         # Setup Plot
@@ -92,6 +65,6 @@ def graph_sensor_data():
         )
         plt.grid(True)
 
-        plot_filename = f"{BASE_DIR}{PLOT_DIR}Sensor Set {SENSOR_SET}/{CALIBRATION_PREFIX}Test {TEST_NUM} Sensor {sensor_num} plot.png"
+        plot_filename = f"{WORKING_DIR}{PLOT_DIR}Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
         plt.savefig(plot_filename, dpi=300)
         plt.show()
