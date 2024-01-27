@@ -2,8 +2,10 @@ import unittest
 
 import numpy as np
 import pandas as pd
+
 from Align_Data import find_deviation_point, find_percentile_index
 from Calculate_Linear_Fit_Sensor_Calibrations import calculate_linear_fit
+
 
 class TestFindDeviationPoint(unittest.TestCase):
     def test_deviation_point(self):

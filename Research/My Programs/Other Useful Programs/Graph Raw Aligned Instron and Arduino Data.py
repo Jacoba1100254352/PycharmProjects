@@ -1,54 +1,58 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Define Global constants
-SENSOR_SET = 1
-NUM_SENSORS = 4
-TEST_NUM = 2
-BASE_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/"
+from Configuration_Variables import *
 
-# Running the analysis and plotting the results
-for sensorNum in range(1, NUM_SENSORS + 1):
-    # Arduino Data
-    arduino_filename = f"{BASE_DIR}Calibration Tests/Aligned Arduino Data/Sensor Set {SENSOR_SET}/Aligned Test {TEST_NUM} Sensor {sensorNum}.csv"
 
-    # Read Arduino data
-    arduino_data = pd.read_csv(arduino_filename)
-    arduino_time = arduino_data["Timestamp"].values
-    arduino_force = arduino_data[f"ADC{sensorNum}"].values
+def read_sensor_data(filename):
+    """
+    Read sensor data from a CSV file.
 
-    # Instron Data
-    excel_data = pd.read_csv(
-        f"{BASE_DIR}Calibration Tests/Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/Interpolated Calibration Test {TEST_NUM} Sensor {sensorNum}.csv")
-    excel_time = excel_data["Time [s]"].values
-    excel_force = excel_data["Force [N]"].values
+    :param filename: Path, the file from which to read sensor data.
+    :return: Tuple, (time_data, force_data).
+    """
+    data = pd.read_csv(filename)
+    time_data = data["Time [s]"].values
+    force_data = data["Force [N]"].values
+    return time_data, force_data
 
-    # Plotting
+
+def plot_sensor_data(arduino_time, arduino_force, excel_time, excel_force, sensor_num):
+    """
+    Plot and display the sensor data.
+
+    :param arduino_time: Array-like, time data from Arduino.
+    :param arduino_force: Array-like, force data from Arduino.
+    :param excel_time: Array-like, time data from Instron.
+    :param excel_force: Array-like, force data from Instron.
+    :param sensor_num: Integer, the sensor number.
+    """
     fig, ax1 = plt.subplots(figsize=(10, 6))
-
-    # Plot Arduino data with ax1 as the primary axis
-    ax1.plot(
-        arduino_time, arduino_force, label=f"Arduino Sensor {sensorNum}", color="orange"
-    )
-    ax1.set_xlabel(
-        "Time [ms]" if excel_time[-1] > arduino_time[-1] else "Time [s]"
-    )  # Choose appropriate label
+    ax1.plot(arduino_time, arduino_force, label=f"Arduino Sensor {sensor_num}", color="orange")
+    ax1.set_xlabel("Time [s]")
     ax1.set_ylabel("Arduino Force [N]", color="orange")
     ax1.tick_params(axis="y", labelcolor="orange")
 
-    # Create a second y-axis for the Instron data
     ax2 = ax1.twinx()
-    ax2.plot(excel_time, excel_force, label=f"Instron Sensor {sensorNum}", color="blue")
+    ax2.plot(excel_time, excel_force, label=f"Instron Sensor {sensor_num}", color="blue")
     ax2.set_ylabel("Instron Force [N]", color="blue")
     ax2.tick_params(axis="y", labelcolor="blue")
 
-    # Finalize plot
     lines, labels = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax2.legend(lines + lines2, labels + labels2, loc=0)
 
-    plt.title(
-        f"Overlay of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensorNum}, Test {TEST_NUM}"
-    )
+    plt.title(f"Overlay of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensor_num}, Test {TEST_NUM}")
     plt.grid(True)
     plt.show()
+
+
+# Running the analysis and plotting the results
+for sensorNum in range(1, NUM_SENSORS + 1):
+    arduino_filename = ALIGNED_ARDUINO_DIR / f"Aligned Calibration Test {TEST_NUM} Sensor {sensorNum} Data.csv"
+    instron_filename = PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensorNum} Data.csv"
+
+    arduino_time, arduino_force = read_sensor_data(arduino_filename)
+    excel_time, excel_force = read_sensor_data(instron_filename)
+
+    plot_sensor_data(arduino_time, arduino_force, excel_time, excel_force, sensorNum)

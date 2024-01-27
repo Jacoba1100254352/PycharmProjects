@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+
 from Configuration_Variables import *
 
 
@@ -67,11 +68,11 @@ def align_data():
     Align data for all sensors.
     """
     for sensor_num in range(1, NUM_SENSORS + 1):
-        parsed_instron_data_filename = INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        parsed_instron_data_filename = PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
         parsed_instron_data = pd.read_csv(parsed_instron_data_filename)
-        parsed_arduino_data_filename = ARDUINO_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        parsed_arduino_data_filename = PARSED_ARDUINO_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
         parsed_arduino_data = pd.read_csv(parsed_arduino_data_filename)
 
-        aligned_data_filename = ALIGNED_DATA_DIR / f"Aligned Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        aligned_data_filename = ALIGNED_ARDUINO_DIR / f"Aligned Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
         align_and_save_arduino_data(sensor_num, parsed_instron_data, parsed_arduino_data, aligned_data_filename,
                                     PERCENTILE)

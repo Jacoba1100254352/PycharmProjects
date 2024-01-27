@@ -1,40 +1,46 @@
 import matplotlib.pyplot as plt
 
-# Define Global constants
-SENSOR_SET = 1
-NUM_SENSORS = 4
-TEST_NUM = 1
-BASE_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/"
+from Configuration_Variables import *
 
-# Running the analysis with interpolation and plotting the results
-for sensorNum in range(1, NUM_SENSORS + 1):
-    # Load and interpolate Arduino data
-    uncalibrated_filename = f"{BASE_DIR}Calibration Tests/Arduino Data/Sensor Set {SENSOR_SET}/Calibration Test {TEST_NUM} Sensor {sensorNum}.txt"
-    # Define indexing constant aid
-    INDEX_DIFFERENCE = 3
 
-    # Open and read file data
-    with open(uncalibrated_filename, "r") as file:
+def read_uncalibrated_arduino_data(filename, sensor_num):
+    """
+    Read and interpolate uncalibrated Arduino data from a text file.
+
+    :param filename: Path, the file from which to read data.
+    :param sensor_num: Integer, the number of the sensor.
+    :return: Tuple, (arduino_time, arduino_force).
+    """
+    with open(filename, "r") as file:
         lines = file.readlines()
-    arduino_time = [(i + 1) * 20 for i, line in enumerate(lines)]
-    arduino_force = [float(line.split(",")[sensorNum].strip()) for line in lines]
 
-    # Plotting
+    arduino_time = [(i + 1) * 20 for i in range(len(lines))]
+    arduino_force = [float(line.split(",")[sensor_num].strip()) for line in lines]
+    return arduino_time, arduino_force
+
+
+def plot_sensor_data(time_data, force_data, sensor_num):
+    """
+    Plot sensor data.
+
+    :param time_data: Array-like, time data for the sensor.
+    :param force_data: Array-like, force data for the sensor.
+    :param sensor_num: Integer, the sensor number.
+    """
     plt.figure(figsize=(10, 6))
+    plt.plot(time_data, force_data, label="Interpolated Uncalibrated Arduino Data", color="orange")
 
-    plt.plot(
-        arduino_time,
-        arduino_force,
-        label="Interpolated Uncalibrated Arduino Data",
-        color="orange",
-    )
-
-    # Finalize plot
     plt.xlabel("Time [s]")
     plt.ylabel("Force [N]")
     plt.legend()
-    plt.title(
-        f"Comparison of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensorNum}, Test {TEST_NUM}"
-    )
+    plt.title(f"Comparison of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensor_num}, Test {TEST_NUM}")
     plt.grid(True)
     plt.show()
+
+
+# Running the analysis with interpolation and plotting the results
+for sensorNum in range(1, NUM_SENSORS + 1):
+    uncalibrated_filename = ORIGINAL_ARDUINO_DIR / f"Original Calibration Test {TEST_NUM} Sensor {sensorNum} Data.txt"
+
+    arduino_time, arduino_force = read_uncalibrated_arduino_data(uncalibrated_filename, sensorNum)
+    plot_sensor_data(arduino_time, arduino_force, sensorNum)

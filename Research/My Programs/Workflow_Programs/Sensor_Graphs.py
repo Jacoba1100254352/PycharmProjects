@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
+
 from Configuration_Variables import *
+
 
 def graph_sensor_data():
     """
@@ -9,8 +10,10 @@ def graph_sensor_data():
     """
     for sensor_num in range(1, NUM_SENSORS + 1):
         # Load data from CSV files
-        instron_data = pd.read_csv(INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
-        updated_arduino_data = pd.read_csv(CALIBRATED_DIR / f"Updated Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
+        instron_data = pd.read_csv(
+            PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
+        updated_arduino_data = pd.read_csv(
+            CALIBRATED_ARDUINO_DIR / f"Updated Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
 
         # Extract time and force data
         instron_time, instron_force = instron_data["Time [s]"], abs(instron_data["Force [N]"])
@@ -25,7 +28,8 @@ def graph_sensor_data():
         # Calculate and plot the difference
         min_length = min(len(instron_force), len(updated_arduino_force))
         difference = instron_force[:min_length] - updated_arduino_force[:min_length]
-        plt.plot(instron_time[:min_length], difference, label="Difference (Instron - Updated Arduino)", color="green", linestyle="--")
+        plt.plot(instron_time[:min_length], difference, label="Difference (Instron - Updated Arduino)", color="green",
+                 linestyle="--")
 
         # Set plot labels and title
         plt.xlabel("Time [s]")
@@ -35,6 +39,6 @@ def graph_sensor_data():
         plt.grid(True)
 
         # Save and show the plot
-        plot_filename = PLOT_DIR / f"Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
+        plot_filename = PLOTS_DIR / f"Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
         plt.savefig(plot_filename, dpi=300)
         plt.show()

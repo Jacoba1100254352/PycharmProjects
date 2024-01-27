@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
+
 from Configuration_Variables import *
+
 
 def find_rising_edge(data_series, threshold_ratio=0.0001):
     """
@@ -15,6 +17,7 @@ def find_rising_edge(data_series, threshold_ratio=0.0001):
     threshold = threshold_ratio * derivative.abs().max()
     return derivative[derivative.abs() > threshold].index.min()
 
+
 def calculate_linear_fit(excel_force, arduino_raw_force):
     """
     Calculate linear fit (m and c) for given force data.
@@ -26,6 +29,7 @@ def calculate_linear_fit(excel_force, arduino_raw_force):
     A = np.vstack([arduino_raw_force, np.ones(len(arduino_raw_force))]).T
     m, c = np.linalg.lstsq(A, excel_force, rcond=None)[0]
     return m, c
+
 
 def write_output_to_file(filename, coefficients):
     """
@@ -39,6 +43,7 @@ def write_output_to_file(filename, coefficients):
         f.write(formatted_data)
         print(f"New coefficients: {formatted_data}")
 
+
 def calculate_coefficients():
     """
     Calculate new calibration coefficients for all sensors and write them to a file.
@@ -47,8 +52,10 @@ def calculate_coefficients():
 
     for sensor_num in range(1, NUM_SENSORS + 1):
         # Load data from CSV files
-        instron_data = pd.read_csv(INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
-        parsed_arduino_data = pd.read_csv(ARDUINO_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
+        instron_data = pd.read_csv(
+            PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
+        parsed_arduino_data = pd.read_csv(
+            PARSED_ARDUINO_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
 
         # Extract necessary data
         instron_time = instron_data["Time [s]"].values
