@@ -4,7 +4,6 @@ from Calculate_Linear_Fit_Sensor_Calibrations import calculate_coefficients
 from Raw_to_CSV import write_raw_data_to_csv
 from Sensor_Graphs import graph_sensor_data
 
-
 # Convert new data to CSV # Raw_to_CSV.py
 write_raw_data_to_csv()
 

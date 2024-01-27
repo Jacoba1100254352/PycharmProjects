@@ -1,5 +1,5 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # Define Global constants
 SENSOR_SET = 1
@@ -7,19 +7,19 @@ NUM_SENSORS = 4
 TEST_NUM = 2
 BASE_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/"
 
-
 # Running the analysis and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
     # Arduino Data
     arduino_filename = f"{BASE_DIR}Calibration Tests/Aligned Arduino Data/Sensor Set {SENSOR_SET}/Aligned Test {TEST_NUM} Sensor {sensorNum}.csv"
 
     # Read Arduino data
-    arduino_data=pd.read_csv(arduino_filename)
+    arduino_data = pd.read_csv(arduino_filename)
     arduino_time = arduino_data["Timestamp"].values
     arduino_force = arduino_data[f"ADC{sensorNum}"].values
 
     # Instron Data
-    excel_data = pd.read_csv(f"{BASE_DIR}Calibration Tests/Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/Interpolated Calibration Test {TEST_NUM} Sensor {sensorNum}.csv")
+    excel_data = pd.read_csv(
+        f"{BASE_DIR}Calibration Tests/Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/Interpolated Calibration Test {TEST_NUM} Sensor {sensorNum}.csv")
     excel_time = excel_data["Time [s]"].values
     excel_force = excel_data["Force [N]"].values
 

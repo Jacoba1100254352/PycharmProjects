@@ -1,12 +1,11 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # Define Global constants
 SENSOR_SET = 1
 NUM_SENSORS = 4
 TEST_NUM = 2
 BASE_DIR = "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/"
-
 
 # Running the analysis and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
@@ -27,7 +26,7 @@ for sensorNum in range(1, NUM_SENSORS + 1):
     excel_filename = f"{BASE_DIR}Calibration Tests/Raw Test Data (Excel)/Sensor Set {SENSOR_SET}/Calibration Test {TEST_NUM}.xlsx"
     excel_data = pd.read_excel(excel_filename, sheet_name=f"Sensor {sensorNum}")
     excel_time = (
-        excel_data["Time [s]"].values * 1000
+            excel_data["Time [s]"].values * 1000
     )  # Scaling time by 1000 as per your code
     excel_force = [abs(value) for value in excel_data["Force [N]"].values]
 
