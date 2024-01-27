@@ -10,10 +10,8 @@ def graph_sensor_data():
     """
     for sensor_num in range(1, NUM_SENSORS + 1):
         # Load data from CSV files
-        instron_data = pd.read_csv(
-            PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
-        updated_arduino_data = pd.read_csv(
-            CALIBRATED_ARDUINO_DIR / f"Updated Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv")
+        instron_data = pd.read_csv(get_data_filepath(PARSED_INSTRON_DIR, sensor_num))
+        updated_arduino_data = pd.read_csv(get_data_filepath(CALIBRATED_ARDUINO_DIR, sensor_num))
 
         # Extract time and force data
         instron_time, instron_force = instron_data["Time [s]"], abs(instron_data["Force [N]"])
@@ -35,10 +33,10 @@ def graph_sensor_data():
         plt.xlabel("Time [s]")
         plt.ylabel("Force [N]")
         plt.legend()
-        plt.title(f"Comparison of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensor_num}, Test {TEST_NUM}")
+        plt.title(f"Comparison of Force Data for {SENSOR_SET_DIR}, Sensor {sensor_num}, Test {TEST_NUM}")
         plt.grid(True)
 
         # Save and show the plot
-        plot_filename = PLOTS_DIR / f"Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
+        plot_filename = get_data_filepath(PLOTS_DIR, sensor_num)
         plt.savefig(plot_filename, dpi=300)
         plt.show()

@@ -49,8 +49,8 @@ def plot_sensor_data(arduino_time, arduino_force, excel_time, excel_force, senso
 
 # Running the analysis and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
-    arduino_filename = ALIGNED_ARDUINO_DIR / f"Aligned Calibration Test {TEST_NUM} Sensor {sensorNum} Data.csv"
-    instron_filename = PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensorNum} Data.csv"
+    arduino_filename = get_data_filepath(ALIGNED_ARDUINO_DIR, sensorNum)
+    instron_filename = get_data_filepath(PARSED_INSTRON_DIR, sensorNum)
 
     arduino_time, arduino_force = read_sensor_data(arduino_filename)
     excel_time, excel_force = read_sensor_data(instron_filename)

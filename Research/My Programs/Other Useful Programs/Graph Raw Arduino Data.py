@@ -40,7 +40,7 @@ def plot_sensor_data(time_data, force_data, sensor_num):
 
 # Running the analysis with interpolation and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
-    uncalibrated_filename = ORIGINAL_ARDUINO_DIR / f"Original Calibration Test {TEST_NUM} Sensor {sensorNum} Data.txt"
+    uncalibrated_filename = get_data_filepath(ORIGINAL_ARDUINO_DIR, sensorNum)
 
     arduino_time, arduino_force = read_uncalibrated_arduino_data(uncalibrated_filename, sensorNum)
     plot_sensor_data(arduino_time, arduino_force, sensorNum)

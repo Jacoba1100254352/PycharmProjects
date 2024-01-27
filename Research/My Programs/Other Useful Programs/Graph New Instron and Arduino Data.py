@@ -52,15 +52,15 @@ def plot_sensor_data(arduino_time, arduino_force, excel_time, excel_force, senso
     plt.title(f"Overlay of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensor_num}, Test {TEST_NUM}")
     plt.grid(True)
 
-    plot_filename = PLOTS_DIR / f"Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
+    plot_filename = get_data_filepath(PLOTS_DIR, sensor_num)
     plt.savefig(plot_filename, dpi=300)
     plt.show()
 
 
 # Running the analysis and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
-    arduino_filename = CALIBRATED_ARDUINO_DIR / f"Updated Calibration Test {TEST_NUM} Sensor {sensorNum} Data.csv"
-    excel_filename = ORIGINAL_INSTRON_DIR / f"Calibration Test {TEST_NUM}.xlsx"
+    arduino_filename = get_data_filepath(CALIBRATED_ARDUINO_DIR, sensorNum)
+    excel_filename = get_data_filepath(ORIGINAL_INSTRON_DIR)
 
     arduino_time, arduino_force = read_arduino_data(arduino_filename, sensorNum)
     excel_time, excel_force = read_instron_data(excel_filename, sensorNum)

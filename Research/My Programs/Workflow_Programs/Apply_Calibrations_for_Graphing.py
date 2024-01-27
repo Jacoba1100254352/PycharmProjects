@@ -47,7 +47,7 @@ def apply_calibration_coefficients():
     new_coefficients = read_coefficients(COEFFICIENTS_DIR / "New Coefficients.txt")
 
     for sensor_num in range(1, NUM_SENSORS + 1):
-        aligned_data_filename = ALIGNED_ARDUINO_DIR / f"Aligned Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        aligned_data_filename = get_data_filepath(ALIGNED_ARDUINO_DIR, sensor_num)
         aligned_arduino_data = pd.read_csv(aligned_data_filename)
 
         if SIMPLIFY:
@@ -60,5 +60,5 @@ def apply_calibration_coefficients():
             aligned_arduino_data["TotalForce1 [N]"] = sum([aligned_arduino_data[f"Force{j + 1} [N]"] for j in range(4)])
             aligned_arduino_data["TotalForce2 [N]"] = 0
 
-        updated_csv_filename = CALIBRATED_ARDUINO_DIR / f"Updated Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        updated_csv_filename = get_data_filepath(CALIBRATED_ARDUINO_DIR, sensor_num)
         write_updated_data_to_csv(updated_csv_filename, aligned_arduino_data)

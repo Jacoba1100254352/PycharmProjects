@@ -65,8 +65,8 @@ def plot_sensor_data(arduino_time, arduino_force, excel_time, excel_force, senso
 
 # Running the analysis and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
-    arduino_filename = ORIGINAL_ARDUINO_DIR / f"Original Calibration Test {TEST_NUM} Sensor {sensorNum} Data.txt"
-    excel_filename = ORIGINAL_INSTRON_DIR / f"Original Calibration Test {TEST_NUM} Data.xlsx"
+    arduino_filename = get_data_filepath(ORIGINAL_ARDUINO_DIR, sensorNum)
+    excel_filename = get_data_filepath(ORIGINAL_INSTRON_DIR)
 
     arduino_time, arduino_force = read_arduino_data(arduino_filename, sensorNum)
     excel_time, excel_force = read_instron_data(excel_filename, f"Sensor {sensorNum}")

@@ -88,7 +88,7 @@ def process_arduino_data(sensor_num):
     :param sensor_num: Integer, the number of the sensor to be processed.
     :return: DataFrame, processed Arduino data.
     """
-    arduino_filename = ORIGINAL_ARDUINO_DIR / f"Original Calibration Test {TEST_NUM} Sensor {sensor_num} Data.txt"
+    arduino_filename = get_data_filepath(ORIGINAL_ARDUINO_DIR, sensor_num)
     with open(arduino_filename, "r") as file:
         data = [parse_arduino_line(line, sensor_num) for line in file if parse_arduino_line(line, sensor_num)]
 
@@ -141,8 +141,8 @@ def write_raw_data_to_csv():
     Process raw data for each sensor and write it to CSV files.
     """
     for sensor_num in range(1, NUM_SENSORS + 1):
-        instron_csv_filename = PARSED_INSTRON_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        instron_csv_filename = get_data_filepath(PARSED_INSTRON_DIR, sensor_num)
         process_and_save_csv(None, instron_csv_filename, process_instron_data, sensor_num=sensor_num)
 
-        arduino_csv_filename = PARSED_ARDUINO_DIR / f"Parsed Calibration Test {TEST_NUM} Sensor {sensor_num} Data.csv"
+        arduino_csv_filename = get_data_filepath(PARSED_ARDUINO_DIR, sensor_num)
         process_and_save_csv(None, arduino_csv_filename, process_arduino_data, sensor_num=sensor_num)

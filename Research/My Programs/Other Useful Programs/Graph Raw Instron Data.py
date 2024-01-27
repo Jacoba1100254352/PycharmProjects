@@ -32,14 +32,14 @@ def plot_sensor_data(time_data, force_data, sensor_num):
     plt.xlabel("Time [s]")
     plt.ylabel("Force [N]")
     plt.legend()
-    plt.title(f"Comparison of Force Data for Sensor Set {SENSOR_SET}, Sensor {sensor_num}, Test {TEST_NUM}")
+    plt.title(f"Comparison of Force Data for {SENSOR_SET_DIR}, Sensor {sensor_num}, Test {TEST_NUM}")
     plt.grid(True)
     plt.show()
 
 
 # Running the analysis with interpolation and plotting the results
 for sensorNum in range(1, NUM_SENSORS + 1):
-    excel_filename = ORIGINAL_INSTRON_DIR / f"Original Calibration Test {TEST_NUM} Data.xlsx"
+    excel_filename = get_data_filepath(ORIGINAL_INSTRON_DIR)
     excel_time, excel_force = read_excel_sensor_data(excel_filename, f"Sensor {sensorNum}")
 
     plot_sensor_data(excel_time, excel_force, sensorNum)
