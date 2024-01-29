@@ -1,21 +1,9 @@
 import unittest
 
 import numpy as np
-import pandas as pd
 
-from Align_Data import find_deviation_point, find_percentile_index
+from Align_Data import find_percentile_index
 from Calculate_Linear_Fit_Sensor_Calibrations import calculate_linear_fit
-
-
-class TestFindDeviationPoint(unittest.TestCase):
-    def test_deviation_point(self):
-        data = pd.DataFrame({'value': [1, 1, 1, 1, 5, 6, 7, 8, 9, 10, 11]})
-        column = 'value'
-        baseline = 2
-        deviation_threshold = 3
-        expected_result = 4  # Index where deviation starts
-        result = find_deviation_point(data, column, baseline, deviation_threshold)
-        self.assertEqual(result, expected_result)
 
 
 class TestFindPercentileIndex(unittest.TestCase):

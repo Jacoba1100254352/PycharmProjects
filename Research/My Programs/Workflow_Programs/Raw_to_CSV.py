@@ -6,7 +6,7 @@ from Configuration_Variables import *
 NUM_SENSORS_OFFSET = 4
 
 
-def parse_arduino_line(line, sensor_num=None):
+def parse_arduino_data(line, sensor_num=None):
     """
     Parse a line of Arduino data.
 
@@ -38,7 +38,7 @@ def parse_arduino_line(line, sensor_num=None):
     return timestamp + adc_readings + force_values + total_values
 
 
-def interpolate_instron_data(instron_data):
+def parse_instron_data(instron_data):
     """
     Interpolate Instron data to match a regular time series.
 
@@ -58,29 +58,6 @@ def interpolate_instron_data(instron_data):
     return interpolated_df
 
 
-def write_to_csv(filename, df):
-    """
-    Write DataFrame to a CSV file.
-
-    :param filename: Path, the name of the file where the DataFrame will be saved.
-    :param df: DataFrame, data to be written to CSV.
-    """
-    df.to_csv(filename, index=False)
-    print(f"Instron data saved to {filename}")
-
-
-def process_instron_data(sensor_num):
-    """
-    Process Instron data for a given sensor number.
-
-    :param sensor_num: Integer, the number of the sensor to be processed.
-    :return: DataFrame, processed Instron data.
-    """
-    instron_data_filename = ORIGINAL_INSTRON_DIR / f"Original Calibration Test {TEST_NUM} Data.xlsx"
-    instron_data = pd.read_excel(instron_data_filename, sheet_name=f"Sensor {sensor_num}")
-    return interpolate_instron_data(instron_data)
-
-
 def process_arduino_data(sensor_num):
     """
     Process Arduino data for a given sensor number and convert it to a DataFrame.
@@ -90,7 +67,7 @@ def process_arduino_data(sensor_num):
     """
     arduino_filename = get_data_filepath(ORIGINAL_ARDUINO_DIR, sensor_num)
     with open(arduino_filename, "r") as file:
-        data = [parse_arduino_line(line, sensor_num) for line in file if parse_arduino_line(line, sensor_num)]
+        data = [parse_arduino_data(line, sensor_num) for line in file if parse_arduino_data(line, sensor_num)]
 
     # Check if data is empty
     if not data or not data[0]:
@@ -110,6 +87,18 @@ def process_arduino_data(sensor_num):
             column_names += ["TotalForce1 [N]", "TotalForce2 [N]"]
 
     return pd.DataFrame(data, columns=column_names)
+
+
+def process_instron_data(sensor_num):
+    """
+    Process Instron data for a given sensor number.
+
+    :param sensor_num: Integer, the number of the sensor to be processed.
+    :return: DataFrame, processed Instron data.
+    """
+    instron_data_filename = ORIGINAL_INSTRON_DIR / f"Original Calibration Test {TEST_NUM} Data.xlsx"
+    instron_data = pd.read_excel(instron_data_filename, sheet_name=f"Sensor {sensor_num}")
+    return parse_instron_data(instron_data)
 
 
 def process_and_save_csv(read_filename, write_filename, process_function, **kwargs):

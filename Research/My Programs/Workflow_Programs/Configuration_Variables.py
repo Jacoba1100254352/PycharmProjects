@@ -41,21 +41,25 @@ def get_data_filepath(directory, sensor_num=None):
     :param sensor_num: The sensor number, if applicable.
     :return: The file path for the specified directory and sensor.
     """
-    # Determine file extension and prefix
-    if directory in [ORIGINAL_ARDUINO_DIR, CALIBRATED_ARDUINO_DIR, ALIGNED_ARDUINO_DIR, PARSED_ARDUINO_DIR]:
-        ext = 'txt' if directory == ORIGINAL_ARDUINO_DIR else 'csv'
-        prefix = 'Parsed' if directory == PARSED_ARDUINO_DIR else \
-            'Updated' if directory == CALIBRATED_ARDUINO_DIR else \
-            'Aligned' if directory == ALIGNED_ARDUINO_DIR else \
-            'Original'
-    elif directory in [ORIGINAL_INSTRON_DIR, PARSED_INSTRON_DIR]:
-        ext = 'csv' if directory == PARSED_INSTRON_DIR else 'xlsx'
-        prefix = 'Parsed' if directory == PARSED_INSTRON_DIR else 'Original'
-    elif directory == PLOTS_DIR:
+
+    # Combined mapping for extension and prefix
+    mapping = {
+        ORIGINAL_ARDUINO_DIR: ('txt', 'Original'),
+        CALIBRATED_ARDUINO_DIR: ('csv', 'Updated'),
+        ALIGNED_ARDUINO_DIR: ('csv', 'Aligned'),
+        PARSED_ARDUINO_DIR: ('csv', 'Parsed'),
+        ORIGINAL_INSTRON_DIR: ('xlsx', 'Original'),
+        PARSED_INSTRON_DIR: ('csv', 'Parsed'),
+        PLOTS_DIR: ('png', '')  # Special case handled in the return statement
+    }
+
+    # Special case for PLOTS_DIR
+    if directory == PLOTS_DIR:
         return directory / f"Calibration Test {TEST_NUM} Sensor {sensor_num} plot.png"
-    else:
+
+    if directory not in mapping:
         raise ValueError("Invalid directory")
 
-    # Construct file name
+    ext, prefix = mapping[directory]
     sensor_str = f" Sensor {sensor_num}" if sensor_num and directory != ORIGINAL_INSTRON_DIR else ""
     return directory / f"{prefix} Calibration Test {TEST_NUM}{sensor_str} Data.{ext}"
