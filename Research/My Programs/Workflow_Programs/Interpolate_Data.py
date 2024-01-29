@@ -1,5 +1,3 @@
-# Program 2: Interpolating Data from CSV
-
 import numpy as np
 import pandas as pd
 

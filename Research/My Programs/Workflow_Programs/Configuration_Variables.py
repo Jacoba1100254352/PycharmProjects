@@ -23,11 +23,12 @@ PARSED_ARDUINO_DIR = WORKING_DIR / ARDUINO_DIR / "Parsed Arduino Data" / SENSOR_
 
 # Instron
 INSTRON_DIR = "Instron Data"
+ALIGNED_INSTRON_DIR = WORKING_DIR / INSTRON_DIR / "Aligned Instron Data" / SENSOR_SET_DIR
 ORIGINAL_INSTRON_DIR = WORKING_DIR / INSTRON_DIR / "Original Instron Data" / SENSOR_SET_DIR
 PARSED_INSTRON_DIR = WORKING_DIR / INSTRON_DIR / "Parsed Instron Data" / SENSOR_SET_DIR
 
-# For Align Data program
-PERCENTILE = 5
+# For Calculate Linear Fit Sensor Calibrations program
+THRESHOLD_RATIO = 0.01
 
 # Determines whether to only list the sensor specific values
 SIMPLIFY = True
@@ -49,6 +50,7 @@ def get_data_filepath(directory, sensor_num=None):
         ALIGNED_ARDUINO_DIR: ('csv', 'Aligned'),
         PARSED_ARDUINO_DIR: ('csv', 'Parsed'),
         ORIGINAL_INSTRON_DIR: ('xlsx', 'Original'),
+        ALIGNED_INSTRON_DIR: ('csv', 'Aligned'),
         PARSED_INSTRON_DIR: ('csv', 'Parsed'),
         PLOTS_DIR: ('png', '')  # Special case handled in the return statement
     }

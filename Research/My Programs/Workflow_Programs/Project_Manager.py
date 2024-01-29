@@ -8,8 +8,8 @@ from Sensor_Graphs import graph_sensor_data
 # Convert new data to CSV # Raw_to_CSV.py
 write_raw_data_to_csv()
 
-# Interpolate the data # Interpolate_Data.py
-interpolate_all_sensors()
+# Interpolate the data # Interpolate_Data.py # NOTE: Ignore this for now
+# interpolate_all_sensors()
 
 # Align data along the x (time) axis # Align_Data.py
 align_data()

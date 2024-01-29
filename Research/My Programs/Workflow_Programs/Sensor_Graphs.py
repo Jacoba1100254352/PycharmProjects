@@ -14,7 +14,7 @@ def graph_sensor_data():
         updated_arduino_data = pd.read_csv(get_data_filepath(CALIBRATED_ARDUINO_DIR, sensor_num))
 
         # Extract time and force data
-        instron_time, instron_force = instron_data["Time [s]"], abs(instron_data["Force [N]"])
+        instron_time, instron_force = instron_data["Time [s]"], instron_data["Force [N]"]
         updated_arduino_time = updated_arduino_data["Time [s]"]
         updated_arduino_force = updated_arduino_data["Force [N]" if SIMPLIFY else f"Force{sensor_num} [N]"]
 
@@ -24,9 +24,8 @@ def graph_sensor_data():
         plt.plot(instron_time, instron_force, label="Instron Data", color="blue")
 
         # Calculate and plot the difference
-        min_length = min(len(instron_force), len(updated_arduino_force))
-        difference = instron_force[:min_length] - updated_arduino_force[:min_length]
-        plt.plot(instron_time[:min_length], difference, label="Difference (Instron - Updated Arduino)", color="green",
+        difference = instron_force - updated_arduino_force
+        plt.plot(instron_time, difference, label="Difference (Instron - Updated Arduino)", color="green",
                  linestyle="--")
 
         # Set plot labels and title
