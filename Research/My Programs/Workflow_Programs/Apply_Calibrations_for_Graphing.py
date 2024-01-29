@@ -32,9 +32,9 @@ def write_updated_data_to_csv(filename, data):
     :param filename: Path, the file to which the data will be written.
     :param data: DataFrame, the sensor data to be written.
     """
-    columns = ["Time [s]", "ADC", "Force [N]"] if SIMPLIFY else ["Time [s]", "ADC1", "ADC2", "ADC3", "ADC4",
-                                                                 "Force1 [N]", "Force2 [N]", "Force3 [N]", "Force4 [N]",
-                                                                 "TotalForce1 [N]", "TotalForce2 [N]"]
+    columns = ["Time [s]", "Force [N]"] if SIMPLIFY else ["Time [s]", "ADC1", "ADC2", "ADC3", "ADC4",
+                                                          "Force1 [N]", "Force2 [N]", "Force3 [N]", "Force4 [N]",
+                                                          "TotalForce1 [N]", "TotalForce2 [N]"]
     df = pd.DataFrame(data, columns=columns)
     df.to_csv(filename, index=False)
     print(f"Data successfully saved to {filename}")
@@ -58,7 +58,8 @@ def apply_calibration_coefficients():
             for j in range(4):
                 calibrated_arduino_data[f"Force{j + 1} [N]"] = round(
                     new_coefficients[j][0] * calibrated_arduino_data[f"ADC{j + 1}"] + new_coefficients[j][1], 2)
-            calibrated_arduino_data["TotalForce1 [N]"] = sum([calibrated_arduino_data[f"Force{j + 1} [N]"] for j in range(4)])
+            calibrated_arduino_data["TotalForce1 [N]"] = sum(
+                [calibrated_arduino_data[f"Force{j + 1} [N]"] for j in range(4)])
             calibrated_arduino_data["TotalForce2 [N]"] = 0
 
         updated_csv_filename = get_data_filepath(CALIBRATED_ARDUINO_DIR, sensor_num)

@@ -38,7 +38,7 @@ def align_and_save_arduino_data(sensor_num, parsed_instron_data, parsed_arduino_
     aligned_arduino_data = aligned_arduino_data.head(min_length)
 
     # Combine and save the aligned data
-    column_names = ["Time [s]", f"ADC{'' if SIMPLIFY else sensor_num}", f"Force [N]"]
+    column_names = ["Time [s]"] + ["ADC"] if SIMPLIFY else [f"ADC{sensor_num}", f"Force [N]"]
     aligned_arduino_data = aligned_arduino_data[column_names]
     aligned_arduino_data.to_csv(aligned_data_dir, index=False)  # parsed_arduino_data
 

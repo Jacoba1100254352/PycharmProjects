@@ -53,7 +53,7 @@ def calculate_coefficients():
     for sensor_num in range(1, NUM_SENSORS + 1):
         # Load data from CSV files
         instron_data = pd.read_csv(get_data_filepath(PARSED_INSTRON_DIR, sensor_num))
-        parsed_arduino_data = pd.read_csv(get_data_filepath(PARSED_ARDUINO_DIR, sensor_num))
+        parsed_arduino_data = pd.read_csv(get_data_filepath(ALIGNED_ARDUINO_DIR, sensor_num))  # PARSED_ARDUINO_DIR
 
         # Extract necessary data
         instron_time = instron_data["Time [s]"].values

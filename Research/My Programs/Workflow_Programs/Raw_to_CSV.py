@@ -1,4 +1,3 @@
-import numpy as np
 import pandas as pd
 
 from Configuration_Variables import *
@@ -25,7 +24,7 @@ def parse_arduino_data(line, sensor_num=None):
     if SIMPLIFY:
         if sensor_num is not None and 0 <= sensor_num < len(values):
             adc_readings = [int(values[sensor_num])]
-            force_values = [float(values[sensor_num + NUM_SENSORS_OFFSET])]
+            force_values = []  # [float(values[sensor_num + NUM_SENSORS_OFFSET])]
         else:
             print("Invalid sensor number")
             return []
@@ -36,26 +35,6 @@ def parse_arduino_data(line, sensor_num=None):
     total_values = [] if SIMPLIFY else list(map(float, values[9:11]))
 
     return timestamp + adc_readings + force_values + total_values
-
-
-def parse_instron_data(instron_data):
-    """
-    Interpolate Instron data to match a regular time series.
-
-    :param instron_data: DataFrame, Instron data to be interpolated.
-    :return: DataFrame, interpolated Instron data.
-    """
-    instron_data['Time [s]'] = pd.to_numeric(instron_data['Time [s]'])
-    instron_data.set_index('Time [s]', inplace=True)
-
-    max_time = instron_data.index.max()
-    new_time_index = pd.Index(np.arange(0, max_time + 0.02, 0.02), name='Time [s]')
-
-    interpolated_df = instron_data.reindex(new_time_index).interpolate(method='linear')
-    interpolated_df = interpolated_df.reset_index()
-    interpolated_df = interpolated_df.round({'Time [s]': 2, 'Displacement [mm]': 4, 'Force [N]': 4})
-
-    return interpolated_df
 
 
 def process_arduino_data(sensor_num):
@@ -69,18 +48,14 @@ def process_arduino_data(sensor_num):
     with open(arduino_filename, "r") as file:
         data = [parse_arduino_data(line, sensor_num) for line in file if parse_arduino_data(line, sensor_num)]
 
-    # Check if data is empty
     if not data or not data[0]:
         print(f"No valid data found in {arduino_filename}")
         return pd.DataFrame()
 
-    # Determine the number of columns based on the length of the first data entry
     num_columns = len(data[0])
-
-    # Define column names based on the number of columns
     column_names = ["Time [s]"]
     if SIMPLIFY:
-        column_names += [f"ADC", f"Force [N]"]
+        column_names += [f"ADC"]
     else:
         column_names += [f"ADC{i}" for i in range(1, 5)] + [f"Force{i} [N]" for i in range(1, 5)]
         if num_columns > 9:
@@ -96,9 +71,11 @@ def process_instron_data(sensor_num):
     :param sensor_num: Integer, the number of the sensor to be processed.
     :return: DataFrame, processed Instron data.
     """
-    instron_data_filename = ORIGINAL_INSTRON_DIR / f"Original Calibration Test {TEST_NUM} Data.xlsx"
-    instron_data = pd.read_excel(instron_data_filename, sheet_name=f"Sensor {sensor_num}")
-    return parse_instron_data(instron_data)
+    instron_data_filename = get_data_filepath(ORIGINAL_INSTRON_DIR)
+    # Lambda function for ignoring the Unnamed column and the Displacement column from the xlsx file
+    column_omission = lambda x: x != 'Unnamed: 0' and x != 'Displacement [mm]'
+    instron_data = pd.read_excel(instron_data_filename, sheet_name=f"Sensor {sensor_num}", usecols=column_omission)
+    return instron_data
 
 
 def process_and_save_csv(read_filename, write_filename, process_function, **kwargs):
@@ -112,15 +89,11 @@ def process_and_save_csv(read_filename, write_filename, process_function, **kwar
     :param kwargs: Additional arguments passed to the process function.
     """
     if read_filename is not None:
-        # Read the CSV file
         data = pd.read_csv(read_filename)
-        # Process the data using the provided function
         processed_data = process_function(data, **kwargs)
     else:
-        # Directly process the data
         processed_data = process_function(**kwargs)
 
-    # Write the processed data to a CSV file
     processed_data.to_csv(write_filename, index=False)
     print(f"Data saved to {write_filename}")
 

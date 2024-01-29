@@ -1,11 +1,15 @@
 from Align_Data import align_data
 from Apply_Calibrations_for_Graphing import apply_calibration_coefficients
 from Calculate_Linear_Fit_Sensor_Calibrations import calculate_coefficients
+from Interpolate_Data import interpolate_all_sensors
 from Raw_to_CSV import write_raw_data_to_csv
 from Sensor_Graphs import graph_sensor_data
 
 # Convert new data to CSV # Raw_to_CSV.py
 write_raw_data_to_csv()
+
+# Interpolate the data # Interpolate_Data.py
+interpolate_all_sensors()
 
 # Align data along the x (time) axis # Align_Data.py
 align_data()
