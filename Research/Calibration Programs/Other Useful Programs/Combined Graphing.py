@@ -1,7 +1,21 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 from Configuration_Variables import *
+
+
+def find_percentile_index(force_data, percentile):
+    """
+    Find the index of the first occurrence of a value equal to or greater than the specified percentile.
+
+    :param force_data: Array-like, data in which to find the percentile index.
+    :param percentile: Integer, the desired percentile.
+    :return: Tuple, (index, percentile_value).
+    """
+    percentile_value = np.percentile(force_data, percentile)
+    index = np.argmax(force_data >= percentile_value)
+    return index
 
 
 def read_arduino_data(filename, sensor_num):

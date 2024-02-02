@@ -9,6 +9,8 @@ def parse_arduino_data(line, sensor_num=None):
     """
     Parse a line of Arduino data.
 
+    Allows for the option to simplify the data to only include the ADC readings.
+
     :param line: String, a line from Arduino data file.
     :param sensor_num: Integer, the number of the sensor to be processed.
     :return: List, parsed values including timestamp, sensor readings, and total values.
@@ -67,6 +69,8 @@ def process_arduino_data(sensor_num):
 def process_instron_data(sensor_num):
     """
     Process Instron data for a given sensor number.
+
+    Simplify the data to only include the Force readings.
 
     :param sensor_num: Integer, the number of the sensor to be processed.
     :return: DataFrame, processed Instron data.

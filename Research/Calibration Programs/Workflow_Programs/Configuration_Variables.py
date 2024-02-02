@@ -4,9 +4,7 @@ from pathlib import Path
 SENSOR_SET = 1
 NUM_SENSORS = 4
 TEST_NUM = 2
-WORKING_DIR = Path(
-    "/Users/jacobanderson/Library/CloudStorage/Box-Box/Nanogroup/Projects/Bioimpedance/Pressure Controller/Jacob's Tests/Calibration Tests"
-)
+WORKING_DIR = Path("../../Calibration Tests")
 
 # Relative directory paths using pathlib
 # Supplemental

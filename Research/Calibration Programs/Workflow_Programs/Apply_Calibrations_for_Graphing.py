@@ -16,7 +16,7 @@ def read_coefficients(filename):
         with open(filename, "r") as f:
             content = f.read()
             pairs = re.findall(r"\{\s*([-\d.]+(?:e[-+]?\d+)?)\s*,\s*([-\d.]+(?:e[-+]?\d+)?)\s*}", content)
-            return [(float(m), float(c)) for m, c in pairs]
+            return [(float(m), float(b)) for m, b in pairs]
     except FileNotFoundError:
         print(f"Warning: The file {filename} does not exist!")
         raise
@@ -46,29 +46,27 @@ def apply_calibration_coefficients():
     """
     new_coefficients = read_coefficients(COEFFICIENTS_DIR / "New Coefficients.txt")
 
+    # Apply the calibration to each sensor's data
     for sensor_num in range(1, NUM_SENSORS + 1):
-        #
+        # Read the aligned data
         aligned_data_filename = get_data_filepath(ALIGNED_ARDUINO_DIR, sensor_num)
         aligned_arduino_data = pd.read_csv(aligned_data_filename)
         calibrated_arduino_data = aligned_arduino_data.copy()
 
         # Apply calibration and center the data
         if SIMPLIFY:
-            calibrated_arduino_data["Force [N]"] = new_coefficients[sensor_num - 1][0] * calibrated_arduino_data[
-                "ADC"] + new_coefficients[sensor_num - 1][1]
+            # Apply the calibration to the force data
+            m, b = new_coefficients[sensor_num - 1][:]
+            calibrated_arduino_data["Force [N]"] = m * calibrated_arduino_data["ADC"] + b
         else:
-            for j in range(4):
-                calibrated_arduino_data[f"Force{j + 1} [N]"] = new_coefficients[j][0] * calibrated_arduino_data[
-                    f"ADC{j + 1}"] + new_coefficients[j][1]
+            # Apply the calibration to each force sensor and calculate the total force
+            for _sensor_num in range(1, NUM_SENSORS + 1):
+                m, b = new_coefficients[_sensor_num - 1][:]
+                calibrated_arduino_data[f"Force{_sensor_num} [N]"] = m * calibrated_arduino_data[
+                    f"ADC{_sensor_num}"] + b
             calibrated_arduino_data["TotalForce1 [N]"] = sum(
-                [calibrated_arduino_data[f"Force{j + 1} [N]"] for j in range(4)])
+                [calibrated_arduino_data[f"Force{_sensor_num} [N]"] for _sensor_num in range(1, NUM_SENSORS + 1)])
             calibrated_arduino_data["TotalForce2 [N]"] = 0
-
-        # Subtract the baseline average or center at zero
-        instron_data = pd.read_csv(
-            get_data_filepath(ALIGNED_INSTRON_DIR, sensor_num))  # specify the correct path to the Instron data file
-        baseline_average = instron_data["Force [N]"][:10].mean()  # FIXME: Make more robust (find the time frame)
-        calibrated_arduino_data["Force [N]" if SIMPLIFY else f"Force{sensor_num} [N]"] -= baseline_average
 
         # Write the updated data to a CSV file
         updated_csv_filename = get_data_filepath(CALIBRATED_ARDUINO_DIR, sensor_num)

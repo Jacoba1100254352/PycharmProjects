@@ -14,11 +14,11 @@ def calculate_linear_fit(excel_force, arduino_raw_force):
 
     :param excel_force: Array-like, force data from Excel (Instron data).
     :param arduino_raw_force: Array-like, raw force data from Arduino.
-    :return: Tuple, (m, c) coefficients from the linear fit.
+    :return: Tuple, (m, b) coefficients from the linear fit.
     """
     A = np.vstack([arduino_raw_force, np.ones(len(arduino_raw_force))]).T
-    m, c = np.linalg.lstsq(A, excel_force, rcond=None)[0]
-    return m, c
+    m, b = np.linalg.lstsq(A, excel_force, rcond=None)[0]
+    return m, b
 
 
 def write_coefficients_to_file(filename, coefficients):
@@ -27,13 +27,15 @@ def write_coefficients_to_file(filename, coefficients):
 
     This function takes the calculated coefficients and writes them into the specified file.
     The coefficients are formatted as a series of tuples, each representing the slope 'm'
-    and intercept 'c' for a sensor.
+    and intercept 'b' for a sensor.
+
+    The formatting is meant to then be paste-able into the arduino code.
 
     :param filename: String, path of the file where coefficients are to be saved.
     :param coefficients: Iterable of tuples, each tuple containing the 'm' and 'c' coefficients.
     """
     with open(filename, "w") as f:
-        formatted_data = f"{{ {', '.join([f'{{ {m}, {c} }}' for m, c in coefficients])} }}"
+        formatted_data = f"{{ {', '.join([f'{{ {m}, {b} }}' for m, b in coefficients])} }}"
         f.write(formatted_data)
         print(f"New coefficients: {formatted_data}")
 
@@ -53,8 +55,7 @@ def calculate_coefficients():
         instron_force = instron_data["Force [N]"].values
         arduino_raw_force = aligned_arduino_data[f"ADC{'' if SIMPLIFY else sensor_num}"].values
 
-        # Calculate linear fit
-        m_new, c_new = calculate_linear_fit(instron_force, arduino_raw_force)
-        new_coefficients_corrected.append((m_new, c_new))
+        # Calculate linear fit and append to list of new coefficients
+        new_coefficients_corrected.append(calculate_linear_fit(instron_force, arduino_raw_force))
 
     write_coefficients_to_file(COEFFICIENTS_DIR / "New Coefficients.txt", new_coefficients_corrected)

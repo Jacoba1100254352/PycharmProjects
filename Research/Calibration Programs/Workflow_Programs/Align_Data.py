@@ -25,22 +25,24 @@ def align_and_save_data(sensor_num, parsed_instron_data, parsed_arduino_data):
     :param parsed_instron_data: DataFrame, the data from the Instron device.
     :param parsed_arduino_data: DataFrame, the data from the Arduino device.
     """
-    # Find the index of the 20% and 80% percentile values in both datasets
-    # Negate the instron data to invert it positively to align with the arduino data for analysis purposes
-    instron_20_index = find_percentile_index(-parsed_instron_data["Force [N]"], 20)
-    instron_80_index = find_percentile_index(-parsed_instron_data["Force [N]"], 80)
-    arduino_20_index = find_percentile_index(parsed_arduino_data[f"ADC{'' if SIMPLIFY else sensor_num}"], 20)
-    arduino_80_index = find_percentile_index(parsed_arduino_data[f"ADC{'' if SIMPLIFY else sensor_num}"], 80)
+    percentiles = range(1, 100, 1)  # Percentiles from 10% to 90% at 10% intervals
+    time_offsets = []
 
-    # Calculate time offsets
-    time_offset_20 = parsed_instron_data["Time [s]"][instron_20_index] - parsed_arduino_data["Time [s]"][
-        arduino_20_index]
-    time_offset_80 = parsed_instron_data["Time [s]"][instron_80_index] - parsed_arduino_data["Time [s]"][
-        arduino_80_index]
-    avg_time_offset = (time_offset_20 + time_offset_80) / 2
+    for percentile in percentiles:
+        # Find the index of the current percentile in both datasets
+        # Negate the instron data to invert it positively to align with the arduino data for analysis purposes
+        instron_index = find_percentile_index(-parsed_instron_data["Force [N]"], percentile)
+        arduino_index = find_percentile_index(parsed_arduino_data[f"ADC{'' if SIMPLIFY else sensor_num}"], percentile)
 
-    # Adjust Arduino time # FIXME: should find a way to use avg_time_offset or combine both offsets
-    parsed_arduino_data["Time [s]"] = parsed_arduino_data["Time [s]"] + time_offset_20
+        # Calculate and store the time offset for the current percentile
+        time_offset = parsed_instron_data["Time [s]"][instron_index] - parsed_arduino_data["Time [s]"][arduino_index]
+        time_offsets.append(time_offset)
+
+    # Calculate the average of the time offsets
+    avg_time_offset = sum(time_offsets) / len(time_offsets)
+
+    # Adjust Arduino time
+    parsed_arduino_data["Time [s]"] = parsed_arduino_data["Time [s]"] + avg_time_offset
 
     # Truncate both datasets to the shortest length
     min_length = min(len(parsed_instron_data), len(parsed_arduino_data))
