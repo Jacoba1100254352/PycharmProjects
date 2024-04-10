@@ -3,6 +3,7 @@
 import random
 import turtle
 
+
 turtle.colormode(255)
 
 # What is the difference between an integer and a string? Give an example of both:
@@ -26,8 +27,8 @@ size = random.randint(25, 50)
 t = turtle.Turtle()
 t.color(r, g, b)
 for i in range(3):
-    t.forward(size)
-    t.right(120)
+	t.forward(size)
+	t.right(120)
 
 # Explain how the above code works:
 #
@@ -38,5 +39,5 @@ for i in range(3):
 
 sideLength = random.randint(0, 50)
 for i in range(3):
-    t.forward(2 * sideLength)
-    t.right(120)
+	t.forward(2 * sideLength)
+	t.right(120)

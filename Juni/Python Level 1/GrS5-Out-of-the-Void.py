@@ -1,5 +1,6 @@
 import turtle
 
+
 turtle.colormode(255)
 
 t = turtle.Turtle()
@@ -16,8 +17,8 @@ s.bgcolor('black')
 n = 300
 
 for i in range(200):
-    t.forward(n)
-    t.right(119)
-    n = n - 3
+	t.forward(n)
+	t.right(119)
+	n = n - 3
 
 t.ht()

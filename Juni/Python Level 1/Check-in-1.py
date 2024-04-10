@@ -10,6 +10,7 @@
 import random
 import turtle
 
+
 # Create a Turtle named whale.
 
 whale = turtle.Turtle()
@@ -26,8 +27,8 @@ whale.right(200)
 
 whale.color("red")
 for i in range(4):
-    whale.right(90)
-    whale.forward(50)
+	whale.right(90)
+	whale.forward(50)
 
 # Move the turtle to the coordinates (-100, -100) and draw another square which is filled in. Make sure not to draw a line between the two squares.
 
@@ -38,8 +39,8 @@ whale.pendown()
 whale.color("red")
 whale.begin_fill()
 for i in range(4):
-    whale.right(90)
-    whale.forward(50)
+	whale.right(90)
+	whale.forward(50)
 whale.end_fill()
 
 #########################################
@@ -54,25 +55,25 @@ whale.end_fill()
 # Write a loop that makes whale move forward 2 pixels, repeating 20 times.
 
 for i in range(20):
-    whale.forward(2)
+	whale.forward(2)
 
 # A dodecagon is a 12-sided shape. Can you draw a dodecagon using a loop?.
 
 for i in range(12):
-    whale.left(360 / 12)
-    whale.forward(30)
+	whale.left(360 / 12)
+	whale.forward(30)
 
 # Loops-4: Draw another dodecagon which is smaller than the first.
 
 for i in range(12):
-    whale.left(360 / 12)
-    whale.forward(10)
+	whale.left(360 / 12)
+	whale.forward(10)
 
 # Program whale to draw a circle using a loop that repeats 36 times.
 
 for i in range(36):
-    whale.forward(15)
-    whale.right(360 / 36)
+	whale.forward(15)
+	whale.right(360 / 36)
 
 #########################################
 
@@ -113,18 +114,18 @@ whale.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 25
 
 num = random.randint(0, 10)
 if num < 5:
-    num = 0
+	num = 0
 elif num == 5:
-    num = 10
+	num = 10
 else:
-    num = 15
+	num = 15
 
 # Use a conditional to change whale’s color to blue if whale is in quadrant III. Test your conditional statements by setting the turtle's position to various locations on the canvas.
 
 if whale.xcor() < 0 and whale.ycor() < 0:
-    whale.color("blue")
+	whale.color("blue")
 
 # Write another conditional which turns whale’s color to green if its x-coordinate is over 100 or its y-coordinate is less than -100.
 
 if whale.xcor() > 100 or whale.ycor() < -100:
-    whale.color("green")
+	whale.color("green")

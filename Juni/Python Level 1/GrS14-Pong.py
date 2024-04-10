@@ -1,6 +1,7 @@
 import random
 import turtle
 
+
 # setup the screen and the paddle shape
 screen = turtle.Screen()
 screen.bgcolor("black")
@@ -16,8 +17,8 @@ boundaryT.goto(-300, 300)
 boundaryT.pensize(2)
 boundaryT.pendown()
 for i in range(4):
-    boundaryT.forward(600)
-    boundaryT.right(90)
+	boundaryT.forward(600)
+	boundaryT.right(90)
 
 # player 1
 p1 = turtle.Turtle()
@@ -60,19 +61,19 @@ pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "norm
 
 # movement functions
 def p1Up():
-    p1.forward(20)
+	p1.forward(20)
 
 
 def p1Down():
-    p1.backward(20)
+	p1.backward(20)
 
 
 def p2Up():
-    p2.forward(20)
+	p2.forward(20)
 
 
 def p2Down():
-    p2.backward(20)
+	p2.backward(20)
 
 
 # key binds
@@ -88,15 +89,15 @@ screen.listen()
 # The second version in the comments writes out all of the angle changes and changeBallDirection steps. The second one may be easier for students that have less geometry experience, as you can draw out each scenario and walk them through the individual steps required. You can use either one of these functions, either as teaching tools or as-is.
 
 def changeBallDirection(context):
-    # finds offset to any plane
-    ballHeading = ball.heading()
-
-    if context == "topBound" or context == "bottomBound":
-        ball.setheading(360 - ballHeading)
-    elif 0 <= ballHeading < 180:
-        ball.setheading(180 - ballHeading)
-    elif 180 <= ballHeading < 360:
-        ball.setheading(540 - ballHeading)
+	# finds offset to any plane
+	ballHeading = ball.heading()
+	
+	if context == "topBound" or context == "bottomBound":
+		ball.setheading(360 - ballHeading)
+	elif 0 <= ballHeading < 180:
+		ball.setheading(180 - ballHeading)
+	elif 180 <= ballHeading < 360:
+		ball.setheading(540 - ballHeading)
 
 
 '''
@@ -163,51 +164,51 @@ def changeBallDirection(context):
 
 # main game loop
 while True:
-    ball.forward(4)
-
-    # if the ball is within the coordinates of p1 (left side)
-    if abs(p1.xcor() - ball.xcor()) < 10 and p1.ycor() <= ball.ycor() <= p1.ycor() + 100:
-        changeBallDirection("p1")
-
-    # if the ball is within the coordinates of p2 (right side)
-    elif abs(ball.xcor() - p2.xcor()) <= 10 and p2.ycor() <= ball.ycor() <= p2.ycor() + 100:
-        changeBallDirection("p2")
-
-    # ball exceeded boundaries on left; p1 missed the ball
-    elif ball.xcor() <= -300:
-        # sets heading to face left again so that we do not start off in the wrong angle
-        ball.setheading(180)
-        ball.right(random.randint(-30, 30))
-        ball.goto(0, 0)
-        p1.clear()
-        p2.clear()
-        p2.write("     I Win!")
-        p2Score += 1
-        pen.clear()
-        pen.write("Player 1: " + str(p1Score) + " Player 2: " + str(p2Score), align="center",
-                  font=("Courier", 24, "normal"))
-
-    # ball exceeded boundaries on right; p2 missed the ball
-    elif ball.xcor() >= 300:
-        # sets heading to face right again so that we do not start off in the wrong angle
-        ball.setheading(0)
-        ball.right(random.randint(-30, 30))
-        ball.goto(0, 0)
-        p1.clear()
-        p2.clear()
-        p1.write("     I Win!")
-        p1Score += 1
-        pen.clear()
-        pen.write("Player 1: " + str(p1Score) + " Player 2: " + str(p2Score), align="center",
-                  font=("Courier", 24, "normal"))
-
-    # top boundary
-    elif ball.ycor() >= 290:
-        changeBallDirection("topBound")
-
-    # bottom boundary
-    elif ball.ycor() <= -290:
-        changeBallDirection("bottomBound")
-
-    # end by updating the screen with changes
-    screen.update()
+	ball.forward(4)
+	
+	# if the ball is within the coordinates of p1 (left side)
+	if abs(p1.xcor() - ball.xcor()) < 10 and p1.ycor() <= ball.ycor() <= p1.ycor() + 100:
+		changeBallDirection("p1")
+	
+	# if the ball is within the coordinates of p2 (right side)
+	elif abs(ball.xcor() - p2.xcor()) <= 10 and p2.ycor() <= ball.ycor() <= p2.ycor() + 100:
+		changeBallDirection("p2")
+	
+	# ball exceeded boundaries on left; p1 missed the ball
+	elif ball.xcor() <= -300:
+		# sets heading to face left again so that we do not start off in the wrong angle
+		ball.setheading(180)
+		ball.right(random.randint(-30, 30))
+		ball.goto(0, 0)
+		p1.clear()
+		p2.clear()
+		p2.write("     I Win!")
+		p2Score += 1
+		pen.clear()
+		pen.write("Player 1: " + str(p1Score) + " Player 2: " + str(p2Score), align="center",
+		          font=("Courier", 24, "normal"))
+	
+	# ball exceeded boundaries on right; p2 missed the ball
+	elif ball.xcor() >= 300:
+		# sets heading to face right again so that we do not start off in the wrong angle
+		ball.setheading(0)
+		ball.right(random.randint(-30, 30))
+		ball.goto(0, 0)
+		p1.clear()
+		p2.clear()
+		p1.write("     I Win!")
+		p1Score += 1
+		pen.clear()
+		pen.write("Player 1: " + str(p1Score) + " Player 2: " + str(p2Score), align="center",
+		          font=("Courier", 24, "normal"))
+	
+	# top boundary
+	elif ball.ycor() >= 290:
+		changeBallDirection("topBound")
+	
+	# bottom boundary
+	elif ball.ycor() <= -290:
+		changeBallDirection("bottomBound")
+	
+	# end by updating the screen with changes
+	screen.update()

@@ -6,7 +6,7 @@
 
 # Define a function that takes in two numbers and returns the product of those two numbers
 def mult(x, y):
-    return x * y
+	return x * y
 
 
 # Using the function you wrote above, print the product of 15 and 22.
@@ -16,15 +16,16 @@ print(mult(15, 22))
 
 import random
 
+
 lotto = random.randint(0, 1)
 money = random.randint(1, 1000)
 
 
 def lottery(lotto, money):
-    if lotto == 1:
-        return ("You won " + str(money) + " dollars!")
-    else:
-        return ("Sorry, you lost.")
+	if lotto == 1:
+		return ("You won " + str(money) + " dollars!")
+	else:
+		return ("Sorry, you lost.")
 
 
 print("Welcome to the lottery. \nChecking the results...")
@@ -57,18 +58,18 @@ print(guests[0])
 # To make a finalized guest list, print "My guest list: " and each name on a separate line below. 
 print("My guest list: ")
 for i in range(len(guests)):
-    print(guests[i])
+	print(guests[i])
 
 # Let’s try this out with some numbers: using a loop, add the numbers 1 to 20 to a list called nums. Print the list.
 nums = []
 for i in range(1, 21):
-    nums.append(i)
+	nums.append(i)
 
 # Now, add add only the even numbers between 1 and 20 to a list called evens. Print the list.
 evens = []
 for i in range(1, 21):
-    if i % 2 == 0:
-        evens.append(i)
+	if i % 2 == 0:
+		evens.append(i)
 print(evens)
 
 ############################################
@@ -91,31 +92,32 @@ print(players)
 
 # For all the players in your dictionary, print only the player names. Then, print only the player numbers.
 for key in players:
-    print(key)
-    print(players[key])
+	print(key)
+	print(players[key])
 
 # Let’s make sure you added my favorite basketball player to the dictionary. Check if Steph Curry is in the dictionary, and print a message if he is. 
 if "Steph Curry" in players:
-    print("Yep, Steph is included!")
+	print("Yep, Steph is included!")
 # add a different message if he’s not in the dictionary.
 else:
-    print("Oh no! He's not included")
+	print("Oh no! He's not included")
 
 # Now, add to the above code so that if Steph is NOT already in the dictionary, it adds him in.  Print the new dictionary.
 if "Steph Curry" in players:
-    print("Yep, Steph is included!")
+	print("Yep, Steph is included!")
 else:
-    print("Oh no! Adding him now.")
-    players["Steph Curry"] = 30
+	print("Oh no! Adding him now.")
+	players["Steph Curry"] = 30
 print(players)
 
 # Create a dictionary with 15 key-value pairs, where the keys are a random number between 0 and 1000, and the values are the number of digits that the key contains. 
 import random
 
+
 digits = {}
 for i in range(15):
-    key = random.randint(0, 1000)
-    digits[key] = len(str(key))
+	key = random.randint(0, 1000)
+	digits[key] = len(str(key))
 print(digits)
 
 ############################################
@@ -149,17 +151,17 @@ print(recipe.intersection(recipe2))
 
 # We’re at the grocery store, and want to check if garlic was one of our ingredients we need to buy. Print a message to the user to tell them whether garlic is in both sets, one of the sets, or neither. (Note: Try to do this using conditionals, but try not to use 'and' or 'or'!)
 if "garlic" in recipe.intersection(recipe2):
-    print("Garlic is in both of our recipes")
+	print("Garlic is in both of our recipes")
 elif "garlic" in recipe.union(recipe2):
-    print("Garlic is in one of our recipes")
+	print("Garlic is in one of our recipes")
 else:
-    print("Garlic is not in either recipe")
+	print("Garlic is not in either recipe")
 
 # Save one of our ingredients, “banana”, in a variable. Add all the letters in the variable into a set. In the case of “banana”, what do you think the set will contain?
 fruit = "banana"
 letters = set()
 for x in fruit:
-    letters.add(x)
+	letters.add(x)
 # before printing: what will the set contain?
 print(letters)
 
@@ -177,7 +179,7 @@ print(letters)
 sentence = input("Write a sentence: ")
 letters = set()
 for letter in sentence:
-    letters.add(letter)
+	letters.add(letter)
 print(letters)
 print("There are " + str(len(letters)) + " different letters in your sentence")
 

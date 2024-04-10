@@ -8,15 +8,15 @@ print("HD's most recent price: " + str(HD[len(HD) - 1]))
 
 GOOGLsum = 0
 for trade in GOOGL:
-    GOOGLsum += trade
+	GOOGLsum += trade
 print("The average (mean) price for GOOGL is " + str(GOOGLsum / len(GOOGL)))
 
 AAPLsum = 0
 for trade in AAPL:
-    AAPLsum += trade
+	AAPLsum += trade
 print("The average (mean) price for AAPL is " + str(AAPLsum / len(AAPL)))
 
 HDsum = 0
 for trade in HD:
-    HDsum += trade
+	HDsum += trade
 print("The average (mean) price for HD is " + str(HDsum / len(HD)))

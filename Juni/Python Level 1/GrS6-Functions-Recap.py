@@ -6,14 +6,15 @@
 
 import turtle
 
+
 turtle.colormode(255)
 t = turtle.Turtle()
 
 
 def drawSquare():
-    for i in range(4):
-        t.forward(50)
-        t.right(90)
+	for i in range(4):
+		t.forward(50)
+		t.right(90)
 
 
 # Call your function

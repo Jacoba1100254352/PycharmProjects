@@ -1,5 +1,6 @@
 import turtle
 
+
 juni = turtle.Turtle()
 juni.speed(5)
 

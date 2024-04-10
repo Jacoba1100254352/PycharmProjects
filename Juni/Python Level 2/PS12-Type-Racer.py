@@ -1,6 +1,7 @@
 import random
 import time
 
+
 sentences = ["Peter Piper picked a peck of pickled peppers", "She sells seashells by the sea shore",
              "How much wood could a woodchuck chuck if a woodchuck could chuck wood?",
              "If a dog chews shoes, whose shoes does he choose?",
@@ -19,8 +20,8 @@ print(sentence)
 startTime = time.time()
 typedInput = input("Type: ")
 while typedInput != sentence:
-    print("The sentences do not match! Please try again.")
-    typedInput = input("Type: ")
+	print("The sentences do not match! Please try again.")
+	typedInput = input("Type: ")
 endTime = time.time()
 
 print("You finished typing in " + str(endTime - startTime) + " seconds!")

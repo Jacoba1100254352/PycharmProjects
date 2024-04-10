@@ -1,5 +1,6 @@
 import turtle
 
+
 turtle.colormode(255)
 
 juni = turtle.Turtle()
@@ -20,10 +21,10 @@ def drawOctogon(sideLength):
 # Change your previous function so that you can input the pensize you want the octogon drawn in into your function too
 
 def drawOctogon(sideLength, pensize):
-    juni.pensize(pensize)
-    for i in range(8):
-        juni.forward(sideLength)
-        juni.right(360 / 8)
+	juni.pensize(pensize)
+	for i in range(8):
+		juni.forward(sideLength)
+		juni.right(360 / 8)
 
 
 # Call your functions

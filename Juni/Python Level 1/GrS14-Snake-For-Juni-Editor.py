@@ -2,6 +2,7 @@ import turtle
 import random
 import time
 
+
 screen = turtle.Screen()
 screen.bgcolor("dark green")
 # screen.tracer(0)
@@ -12,10 +13,10 @@ drawer.penup()
 drawer.goto(-300, 150)
 drawer.pendown()
 for i in range(2):
-    drawer.forward(600)
-    drawer.right(90)
-    drawer.forward(280)
-    drawer.right(90)
+	drawer.forward(600)
+	drawer.right(90)
+	drawer.forward(280)
+	drawer.right(90)
 drawer.ht()
 snakes = []
 headSnake = turtle.Turtle()
@@ -34,27 +35,27 @@ tomato.goto(0, 0)
 
 # tomato.speed(0)
 def directionUp():
-    global headDirection
-    if headDirection != "down":
-        headDirection = "up"
+	global headDirection
+	if headDirection != "down":
+		headDirection = "up"
 
 
 def directionDown():
-    global headDirection
-    if headDirection != "up":
-        headDirection = "down"
+	global headDirection
+	if headDirection != "up":
+		headDirection = "down"
 
 
 def directionLeft():
-    global headDirection
-    if headDirection != "right":
-        headDirection = "left"
+	global headDirection
+	if headDirection != "right":
+		headDirection = "left"
 
 
 def directionRight():
-    global headDirection
-    if headDirection != "left":
-        headDirection = "right"
+	global headDirection
+	if headDirection != "left":
+		headDirection = "right"
 
 
 screen.onkey(directionUp, "up")
@@ -73,61 +74,60 @@ drawer.write("High Score: " + str(highscore))
 
 
 def move():
-    if headDirection == "up":
-        y = headSnake.ycor()
-        headSnake.sety(y + 20)
-    if headDirection == "down":
-        y = headSnake.ycor()
-        headSnake.sety(y - 20)
-    if headDirection == "right":
-        x = headSnake.xcor()
-        headSnake.setx(x + 20)
-    if headDirection == "left":
-        x = headSnake.xcor()
-        headSnake.setx(x - 20)
+	if headDirection == "up":
+		y = headSnake.ycor()
+		headSnake.sety(y + 20)
+	if headDirection == "down":
+		y = headSnake.ycor()
+		headSnake.sety(y - 20)
+	if headDirection == "right":
+		x = headSnake.xcor()
+		headSnake.setx(x + 20)
+	if headDirection == "left":
+		x = headSnake.xcor()
+		headSnake.setx(x - 20)
 
 
 while True:
-    screen.tracer(0)
-    if headSnake.distance(tomato) < 20:
-        score += 1
-        drawer.clear()
-        drawer.goto(-300, 155)
-        tomato.goto(random.randint(-300, 300), random.randint(-130, 150))
-        bodySnake = turtle.Turtle()
-        bodySnake.shape("square")
-        bodySnake.color("lawn green")
-        bodySnake.penup()
-        bodySnake.speed(0)
-        snakes.append(bodySnake)
-        if score > highscore:
-            highscore = score
-            drawer.clear()
-            drawer.goto(-250, 155)
-            drawer.write("High Score: " + str(highscore))
-    for i in range(len(snakes) - 1, 0, -1):
-        x = snakes[i - 1].xcor()
-        y = snakes[i - 1].ycor()
-        snakes[i].goto(x, y)
-    if len(snakes) > 0:
-        snakes[0].goto(headSnake.xcor(), headSnake.ycor())
-    screen.update()
-    screen.tracer(1)
-    move()
-    screen.tracer(0)
-    headHitBody = False
-    for i in range(len(snakes) - 1, 0, -1):
-        if headSnake.distance(snakes[i]) < 15:
-            snakes = []
-            score = 0
-            headHitBody = True
-    if headSnake.xcor() < -300 or headSnake.xcor() > 300 or headSnake.ycor() < -130 or headSnake.ycor() > 150 or headHitBody:
-        snakes = []
-        score = 0
-        break
-    drawer.write("Score: " + str(score))
-    screen.update()
-
+	screen.tracer(0)
+	if headSnake.distance(tomato) < 20:
+		score += 1
+		drawer.clear()
+		drawer.goto(-300, 155)
+		tomato.goto(random.randint(-300, 300), random.randint(-130, 150))
+		bodySnake = turtle.Turtle()
+		bodySnake.shape("square")
+		bodySnake.color("lawn green")
+		bodySnake.penup()
+		bodySnake.speed(0)
+		snakes.append(bodySnake)
+		if score > highscore:
+			highscore = score
+			drawer.clear()
+			drawer.goto(-250, 155)
+			drawer.write("High Score: " + str(highscore))
+	for i in range(len(snakes) - 1, 0, -1):
+		x = snakes[i - 1].xcor()
+		y = snakes[i - 1].ycor()
+		snakes[i].goto(x, y)
+	if len(snakes) > 0:
+		snakes[0].goto(headSnake.xcor(), headSnake.ycor())
+	screen.update()
+	screen.tracer(1)
+	move()
+	screen.tracer(0)
+	headHitBody = False
+	for i in range(len(snakes) - 1, 0, -1):
+		if headSnake.distance(snakes[i]) < 15:
+			snakes = []
+			score = 0
+			headHitBody = True
+	if headSnake.xcor() < -300 or headSnake.xcor() > 300 or headSnake.ycor() < -130 or headSnake.ycor() > 150 or headHitBody:
+		snakes = []
+		score = 0
+		break
+	drawer.write("Score: " + str(score))
+	screen.update()
 
 # Very Much Simplified code:
 """

@@ -8,19 +8,19 @@ english = ["Nico", "Sharjeel", "Isabella", "Taylor", "Ali", "Ali", "Jean-Baptist
 # alternate Pythonic way: biologyStudents = set(biology)
 biologyStudents = set()
 for name in biology:
-    biologyStudents.add(name)
+	biologyStudents.add(name)
 
 print("Biology actually has " + str(len(biologyStudents)) + " students enrolled.")
 
 computerScienceStudents = set()
 for name in computerScience:
-    computerScienceStudents.add(name)
+	computerScienceStudents.add(name)
 
 print("Computer Science actually has " + str(len(computerScienceStudents)) + " students enrolled.")
 
 englishStudents = set()
 for name in english:
-    englishStudents.add(name)
+	englishStudents.add(name)
 
 print("English actually has " + str(len(englishStudents)) + " students enrolled.")
 

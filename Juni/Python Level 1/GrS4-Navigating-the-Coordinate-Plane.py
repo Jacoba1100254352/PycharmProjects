@@ -1,5 +1,6 @@
 import turtle
 
+
 graphDrawer = turtle.Turtle()
 graphDrawer.speed(0)
 
