@@ -7,6 +7,7 @@
 import random
 import turtle
 
+
 turtle.colormode(255)
 lion = turtle.Turtle()
 lion.speed(0)
@@ -15,31 +16,31 @@ lion.speed(0)
 # Write code which will move lion to a random place on the screen 5 times, drawing a square each time it moves, using a nested loop.
 
 for i in range(5):
-    lion.penup()
-    lion.goto(random.randint(-200, 200), random.randint(-200, 200))
-    lion.pendown()
-    for i in range(4):
-        lion.forward(50)
-        lion.right(90)
+	lion.penup()
+	lion.goto(random.randint(-200, 200), random.randint(-200, 200))
+	lion.pendown()
+	for i in range(4):
+		lion.forward(50)
+		lion.right(90)
 
 # Alter your code to draw 3 triangles instead.
 
 for i in range(3):
-    lion.penup()
-    lion.goto(random.randint(-200, 200), random.randint(-200, 200))
-    lion.pendown()
-    for i in range(3):
-        lion.forward(50)
-        lion.right(120)
+	lion.penup()
+	lion.goto(random.randint(-200, 200), random.randint(-200, 200))
+	lion.pendown()
+	for i in range(3):
+		lion.forward(50)
+		lion.right(120)
 
 # How many lines does our turtle make in our new code?
 # Make a while true loop which breaks after its fifth iteration.
 
 counter = 0
 while True:
-    counter += 1
-    if counter >= 5:
-        break
+	counter += 1
+	if counter >= 5:
+		break
 
 #########################################
 
@@ -52,11 +53,11 @@ while True:
 
 num = random.randint(0, 60)
 if num <= 20:
-    lion.color("red")
+	lion.color("red")
 elif num <= 40:
-    lion.color("yellow")
+	lion.color("yellow")
 else:
-    lion.color("green")
+	lion.color("green")
 
 #########################################
 
@@ -72,9 +73,9 @@ whales = []
 # Create three more turtles (name them anything) and add them to the list.
 
 for i in range(3):
-    whales.append(turtle.Turtle())
+	whales.append(turtle.Turtle())
 
 # Use a loop to move each turtle in our list backward by 30 pixels.
 
 for whale in whales:
-    whale.backward(30)
+	whale.backward(30)

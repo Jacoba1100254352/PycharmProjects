@@ -1,6 +1,7 @@
 import random
 import turtle
 
+
 turtle.colormode(255)
 
 t = turtle.Turtle()
@@ -9,26 +10,26 @@ screen = turtle.Screen()
 
 
 def turnLeft1():
-    t.left(10)
+	t.left(10)
 
 
 def turnRight1():
-    t.right(10)
+	t.right(10)
 
 
 def turnLeft2():
-    t2.left(10)
+	t2.left(10)
 
 
 def turnRight2():
-    t2.right(10)
+	t2.right(10)
 
 
 def checkCollision():
-    if abs(t.xcor() - t2.xcor()) < 10 and abs(t.ycor() - t2.ycor()) < 10:
-        t.write("Collision!")
-        t.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        t2.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+	if abs(t.xcor() - t2.xcor()) < 10 and abs(t.ycor() - t2.ycor()) < 10:
+		t.write("Collision!")
+		t.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+		t2.color(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 
 screen.onkey(turnLeft1, "Left")
@@ -48,6 +49,6 @@ t2.color("blue")
 
 # both turtles continuously move and check for collisions
 while True:
-    t.forward(1)
-    t2.forward(1)
-    checkCollision()
+	t.forward(1)
+	t2.forward(1)
+	checkCollision()

@@ -1,5 +1,6 @@
 import turtle
 
+
 t = turtle.Turtle()
 
 colors = []
@@ -11,10 +12,10 @@ colors.append("pink")
 colors.append("green")
 
 for color in colors:
-    t.color(color)
-    t.forward(10)
+	t.color(color)
+	t.forward(10)
 
 if "purple" in colors:
-    t.write("yes")
+	t.write("yes")
 else:
-    t.write("no")
+	t.write("no")

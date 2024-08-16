@@ -1,5 +1,6 @@
 import turtle
 
+
 t = turtle.Turtle()
 t.speed(0)
 t.penup()
@@ -8,10 +9,10 @@ t.pendown()
 
 t.left(70)
 for i in range(30):
-    t.forward(20)
-    t.right(140)
-    t.forward(20)
-    t.left(140)
+	t.forward(20)
+	t.right(140)
+	t.forward(20)
+	t.left(140)
 
 """
 # Bonus extension for advanced students

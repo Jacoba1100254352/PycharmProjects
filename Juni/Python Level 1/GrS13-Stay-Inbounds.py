@@ -1,5 +1,6 @@
 import turtle
 
+
 t = turtle.Turtle()
 screen = turtle.Screen()
 
@@ -11,18 +12,18 @@ boxDrawer.penup()
 boxDrawer.goto(-200, 200)
 boxDrawer.pendown()
 for i in range(4):
-    boxDrawer.forward(400)
-    boxDrawer.right(90)
+	boxDrawer.forward(400)
+	boxDrawer.right(90)
 boxDrawer.penup()
 
 
 # create functions for keyboard events
 def turnLeft():
-    t.left(10)
+	t.left(10)
 
 
 def turnRight():
-    t.right(10)
+	t.right(10)
 
 
 # bind keyboard events to screen
@@ -43,17 +44,17 @@ t.color("black")
 t.goto(0, 0)
 t.pendown()
 while True:
-    t.forward(5)
-
-    # check if turtle is out of bounds
-    if t.xcor() > 200 or t.xcor() < -200 or t.ycor() > 200 or t.ycor() < -200:
-        t.write("Out of bounds!")
-        break
-    else:
-        # update score
-        score += 1
-        scoreTurtle.clear()
-        scoreTurtle.write("Score: " + str(score))
+	t.forward(5)
+	
+	# check if turtle is out of bounds
+	if t.xcor() > 200 or t.xcor() < -200 or t.ycor() > 200 or t.ycor() < -200:
+		t.write("Out of bounds!")
+		break
+	else:
+		# update score
+		score += 1
+		scoreTurtle.clear()
+		scoreTurtle.write("Score: " + str(score))
 
 '''
 alternative while loop solution, for advanced students:

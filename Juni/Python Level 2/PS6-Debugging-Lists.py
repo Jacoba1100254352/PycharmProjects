@@ -12,21 +12,21 @@ flavors = flavor[]
 
 # Ask my 5 best friends for ice cream recommendations
 for i in range(5):
-    suggestion = input("Friend " + str(i + 1) + ", what kind of ice cream should I get? ")
-    flavors = flavors + suggestion
+	suggestion = input("Friend " + str(i + 1) + ", what kind of ice cream should I get? ")
+	flavors = flavors + suggestion
 
 # Print out all of the suggestions
 for flavor in flavors:
-    print(flavors[i])
+	print(flavors[i])
 
 # Check if any of my friends recommended chocolate mudslide (my favorite flavor) or pistachio (my least favorite flavor)
 numChocolateMudslide = 0
 numPistachio = 0
 for i in range(flavors):
-    if flavor == "chocolate mudslide":
-        numChocolateMudslide += 1
-    elif flavor == "pistachio":
-        numPistachio += 1
+	if flavor == "chocolate mudslide":
+		numChocolateMudslide += 1
+	elif flavor == "pistachio":
+		numPistachio += 1
 
 print(str(numChocolateMudslide) + " of my friends  wanted chocolate mudslide, my favorite flavor!")
 print(str(pistachio) + " of my friends wanted pistachio, my least favorite flavor!")

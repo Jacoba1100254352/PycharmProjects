@@ -7,14 +7,14 @@ english = ["Nico", "Sharjeel", "Isabella", "Taylor", "Ali", "Ali", "Jean-Baptist
 
 
 def generateWaitlist(students):
-    enrolled = set()
-    waitlist = set()
-    for name in students:
-        if len(enrolled) < 6:
-            enrolled.add(name)
-        elif name not in enrolled:
-            waitlist.add(name)
-    return waitlist
+	enrolled = set()
+	waitlist = set()
+	for name in students:
+		if len(enrolled) < 6:
+			enrolled.add(name)
+		elif name not in enrolled:
+			waitlist.add(name)
+	return waitlist
 
 
 print("Waitlisted for Biology: " + str(generateWaitlist(biology)))
