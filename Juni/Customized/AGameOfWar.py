@@ -1,64 +1,61 @@
 import random
 
-
 Player1, Player2 = "Player1", "Player2"
 wins = {Player1: 0, Player2: 0}
 
-
 def isTooSmall(decks, finalSetIndex):
-	for player in [Player1, Player2]:
-		otherPlayer = Player2 if player == Player1 else Player1
-		if len(decks[player]) <= finalSetIndex:
-			decks[otherPlayer].extend(decks[player])
-			decks[player] = []
-			return True
-	return False
-
+    for player in [Player1, Player2]:
+        otherPlayer = Player2 if player == Player1 else Player1
+        if len(decks[player]) <= finalSetIndex:
+            decks[otherPlayer].extend(decks[player])
+            decks[player] = []
+            return True
+    return False
 
 def war(decks):
-	finalSetIndex = 3
-	while not isTooSmall(decks, finalSetIndex) and decks[Player1][finalSetIndex] == decks[Player2][finalSetIndex]:
-		finalSetIndex += 4
-	
-	if isTooSmall(decks, finalSetIndex):  # add a condition to exit the function if the deck size is too small
-		return decks
-	
-	wonRound, lostRound = sorted([Player1, Player2], key=lambda player: decks[player][finalSetIndex], reverse=True)
-	
-	if decks[wonRound][finalSetIndex] == decks[lostRound][finalSetIndex]:
-		print("This should not have been reached")
-		exit(1)
-	
-	decks[wonRound].extend(decks[wonRound][:finalSetIndex + 1] + decks[lostRound][:finalSetIndex + 1])
-	decks[wonRound] = decks[wonRound][finalSetIndex + 1:]
-	decks[lostRound] = decks[lostRound][finalSetIndex + 1:]
-	
-	return decks
+    finalSetIndex = 3
+    while not isTooSmall(decks, finalSetIndex) and decks[Player1][finalSetIndex] == decks[Player2][finalSetIndex]:
+        finalSetIndex += 4
 
+    if isTooSmall(decks, finalSetIndex):  # add a condition to exit the function if the deck size is too small
+        return decks
+
+    wonRound, lostRound = sorted([Player1, Player2], key=lambda player: decks[player][finalSetIndex], reverse=True)
+
+    if decks[wonRound][finalSetIndex] == decks[lostRound][finalSetIndex]:
+        print("This should not have been reached")
+        exit(1)
+
+    decks[wonRound].extend(decks[wonRound][:finalSetIndex + 1] + decks[lostRound][:finalSetIndex + 1])
+    decks[wonRound] = decks[wonRound][finalSetIndex + 1:]
+    decks[lostRound] = decks[lostRound][finalSetIndex + 1:]
+
+    return decks
 
 for _ in range(1000):
-	dealingDeck = [j for _ in range(4) for j in range(1, 14)]
-	random.shuffle(dealingDeck)
-	
-	playerDecks = {Player1: dealingDeck[::2], Player2: dealingDeck[1::2]}
-	
-	while playerDecks[Player1] and playerDecks[Player2]:
-		card1, card2 = playerDecks[Player1].pop(0), playerDecks[Player2].pop(0)
-		winner, loser = sorted([(card1, Player1), (card2, Player2)], reverse=True)
-		
-		if winner[0] != loser[0]:
-			playerDecks[winner[1]].extend([winner[0], loser[0]])
-		else:
-			playerDecks = war(playerDecks)
-	
-	if len(playerDecks[Player1]) > 0 and len(playerDecks[Player2]) > 0:
-		print("Something fishy has occurred")
-	else:
-		winner = Player1 if len(playerDecks[Player1]) > 0 else Player2
-		wins[winner] += 1
-		# print(f"{winner} won!")
+    dealingDeck = [j for _ in range(4) for j in range(1, 14)]
+    random.shuffle(dealingDeck)
+
+    playerDecks = {Player1: dealingDeck[::2], Player2: dealingDeck[1::2]}
+
+    while playerDecks[Player1] and playerDecks[Player2]:
+        card1, card2 = playerDecks[Player1].pop(0), playerDecks[Player2].pop(0)
+        winner, loser = sorted([(card1, Player1), (card2, Player2)], reverse=True)
+
+        if winner[0] != loser[0]:
+            playerDecks[winner[1]].extend([winner[0], loser[0]])
+        else:
+            playerDecks = war(playerDecks)
+
+    if len(playerDecks[Player1]) > 0 and len(playerDecks[Player2]) > 0:
+        print("Something fishy has occurred")
+    else:
+        winner = Player1 if len(playerDecks[Player1]) > 0 else Player2
+        wins[winner] += 1
+        # print(f"{winner} won!")
 
 print(wins)
+
 
 """
 # Previous code

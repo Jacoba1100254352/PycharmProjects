@@ -2,7 +2,6 @@ import sys
 
 import pgzrun
 
-
 mod = sys.modules['__main__']
 
 # PART 1: BIGFOOT SINGLE PLATFORM ----------------
