@@ -8,6 +8,7 @@
 
 import turtle
 
+
 turtle.colormode(255)
 zebra = turtle.Turtle()
 zebra.speed(0)
@@ -16,29 +17,29 @@ zebra.speed(0)
 
 sideLength = 10
 for i in range(10):
-    zebra.forward(sideLength)
-    zebra.left(90)
-    sideLength += 5
+	zebra.forward(sideLength)
+	zebra.left(90)
+	sideLength += 5
 
 # Change your loop so that sideLength does not change if it is 30px or longer.
 
 sideLength = 10
 for i in range(10):
-    zebra.forward(sideLength)
-    zebra.left(90)
-    if sideLength < 30:
-        sideLength += 5
+	zebra.forward(sideLength)
+	zebra.left(90)
+	if sideLength < 30:
+		sideLength += 5
 
 # Change your loop from a for loop to a while loop while maintaining the same output. When should we use for loops and when should we use while loops when coding?
 
 sideLength = 10
 counter = 0
 while counter < 10:
-    zebra.forward(sideLength)
-    zebra.left(90)
-    counter += 1
-    if sideLength < 30:
-        sideLength += 5
+	zebra.forward(sideLength)
+	zebra.left(90)
+	counter += 1
+	if sideLength < 30:
+		sideLength += 5
 
 
 #########################################
@@ -52,7 +53,7 @@ while counter < 10:
 # Define a function called moveForward50() which moves zebra forward by 50 pixels.
 
 def moveForward50():
-    zebra.forward(50)
+	zebra.forward(50)
 
 
 # Call your function.
@@ -65,9 +66,9 @@ moveForward50()
 # Define a function called drawSquare(sideLength) which takes in the square's side length as input. Call this function with an input of 40.
 
 def drawSquare(sideLength):
-    for i in range(4):
-        zebra.right(90)
-        zebra.forward(sideLength)
+	for i in range(4):
+		zebra.right(90)
+		zebra.forward(sideLength)
 
 
 drawSquare(40)
@@ -92,9 +93,9 @@ screen.onkey(moveForward50, "Right")
 # Program an event listener that draws a triangle each time the up arrow key is pressed. Then, add a line of code that also draws a triangle each time the "A" key is pressed.
 
 def drawTriangle():
-    for i in range(3):
-        zebra.left(120)
-        zebra.forward(50)
+	for i in range(3):
+		zebra.left(120)
+		zebra.forward(50)
 
 
 screen.onkey(drawTriangle, "Up")

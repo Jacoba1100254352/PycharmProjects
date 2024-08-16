@@ -1,31 +1,31 @@
 def add(x, y):
-    return x + y
+	return x + y
 
 
 def subtract(x, y):
-    return x - y
+	return x - y
 
 
 def multiply(x, y, z):
-    return x * y * z
+	return x * y * z
 
 
 def average(x, y):
-    return (x + y) / 2
+	return (x + y) / 2
 
 
 def factorial(n):
-    answer = 1
-    for i in range(1, n + 1):
-        answer *= i
-    return answer
+	answer = 1
+	for i in range(1, n + 1):
+		answer *= i
+	return answer
 
 
 def exponent(b, p):
-    answer = 1
-    for i in range(0, p):
-        answer *= b
-    return answer
+	answer = 1
+	for i in range(0, p):
+		answer *= b
+	return answer
 
 
 print("The sum of 2 and 3 is: " + str(add(2, 3)))

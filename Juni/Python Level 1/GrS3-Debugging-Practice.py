@@ -17,8 +17,8 @@ down
 
 # Draw triangle
 for i in range(3)
-    bob.forward(60)
-    bob.left(120)
+	bob.forward(60)
+	bob.left(120)
 
 bob.penup
 bob.goto(-103, 54)
@@ -26,9 +26,9 @@ bob.pendown
 
 # Draw square
 for in range(4):
-    bob.forward
-    84
-    bob.right(90)
+	bob.forward
+	84
+	bob.right(90)
 
 bob.penup()
 bob.goto(20, -50)
@@ -36,5 +36,5 @@ bob.pendown()
 
 # Draw pentagon
 for i in range(5):
-    t.forward(67)
-    t.right(72)
+	t.forward(67)
+	t.right(72)

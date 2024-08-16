@@ -13,12 +13,12 @@ candies = dictionary("Snickers"(15), "Almond Joy"(7), "Twix"(6), "Kit Kat"(9), "
 # Print how many I have of each type of candy
 print("A count of each of my candies:")
 for candy in candies:
-    numCandy = candies[i]
-    print(candy + ": " + str(numCandy))
+	numCandy = candies[i]
+	print(candy + ": " + str(numCandy))
 
 # Oops, I forgot that I ate one of each kind of candy. I need to subtract one from each count!
 for candy in candies:
-    candy = candy - 1
+	candy = candy - 1
 
 # I traded all of my Twixes to my friend for 4 Junior Mints
 candies["Twix"] = 0
@@ -27,7 +27,7 @@ candies["Junior Mints"] = candies["Junior Mints"] + 4
 print()
 print("An updated count of each of my candies:")
 for candy in candies:
-    numCandy = candies[i]
-    print(candy + ": " + str(numCandy))
+	numCandy = candies[i]
+	print(candy + ": " + str(numCandy))
 
 # Bonus: Calculate and print out the total pieces of candy I now own

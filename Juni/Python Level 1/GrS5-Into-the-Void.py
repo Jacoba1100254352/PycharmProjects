@@ -1,5 +1,6 @@
 import turtle
 
+
 turtle.colormode(255)
 
 t = turtle.Turtle()
@@ -12,6 +13,6 @@ s.bgcolor('black')
 n = 50
 
 for i in range(300):
-    t.forward(n)
-    t.right(91)
-    n = n + 1
+	t.forward(n)
+	t.right(91)
+	n = n + 1

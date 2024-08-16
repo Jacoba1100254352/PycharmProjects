@@ -43,35 +43,35 @@ print("You guessed a " + color + " " + animal)
 
 # Print the numbers 0 to 10 using a for loop
 for i in range(0, 11):
-    print(i)
+	print(i)
 
 # Print each individual letter of the color from the user input above, using a for loop
 for i in range(0, len(color)):
-    print(color[i])
+	print(color[i])
 
 # Print every third number from 6 to 15 using a for loop
 for i in range(6, 16, 3):
-    print(i)
+	print(i)
 
 # Using a while loop, print the numbers 0 to 15
 x = 0
 while x < 16:
-    print(x)
-    x += 1
+	print(x)
+	x += 1
 
 # Using a while loop, print every other letter of the animal that the user inputted, starting from the second letter.
 i = 1
 while i < len(animal):
-    print(animal[i])
-    i += 2
+	print(animal[i])
+	i += 2
 
 # Bonus Question: Print the numbers 1 to 10 using a while True loop
 x = 1
 while True:
-    print(x)
-    x += 1
-    if x == 11:
-        break
+	print(x)
+	x += 1
+	if x == 11:
+		break
 
 ############################################
 
@@ -85,25 +85,25 @@ while True:
 
 # Using the guesses that we asked the user for above, we want to check if the user guessed correctly! First things first, let’s just check if they guessed a cat. If the animal they guessed was a cat, tell the user “we love cats!”
 if animal == "cat":
-    print("we love cats!")
+	print("we love cats!")
 
 # Next, let’s tell the user whether they got the right answer of a black dog! Print “Correct answer!” if the animal is a black dog, print “Almost there!” if the animal is either black or a dog, and print “Incorrect answer :( ” if the user guessed neither.
 
 if animal == "dog" and color == "black":
-    print("Correct answer!")
+	print("Correct answer!")
 elif animal == "dog" or color == "black":
-    print("Almost there!")
+	print("Almost there!")
 else:
-    print("Incorrect answer :(")
+	print("Incorrect answer :(")
 
 #  Do you remember what a nested if statement is? How would you change part of the above problem to include a nested if statement?
 if animal == "dog":
-    if color == "black":
-        print("You're right!")
-    else:
-        print("You have the right animal! Try a different color")
+	if color == "black":
+		print("You're right!")
+	else:
+		print("You have the right animal! Try a different color")
 else:
-    print("Incorrect answer :(")
+	print("Incorrect answer :(")
 
 ############################################
 
@@ -115,18 +115,18 @@ else:
 word = input("Enter a word: ")
 newWord = ''
 for i in range(0, len(word)):
-    if len(word) % 2 == 0:
-        newWord += chr(ord(word[i]) + 1)
-    else:
-        newWord += chr(ord(word[i]) - 1)
+	if len(word) % 2 == 0:
+		newWord += chr(ord(word[i]) + 1)
+	else:
+		newWord += chr(ord(word[i]) - 1)
 print(newWord)
 
 # Ask the user for a word. For all even-numbered letters (e.g. index 0,2,4) in the word, shift the letter up one, and for all the odd-numbered letters (e.g. index 1,3) in the word, shift the letter down one.
 word = input("enter a word: ")
 newWord = ''
 for i in range(0, len(word)):
-    if i % 2 == 0:
-        newWord += chr(ord(word[i]) + 1)
-    else:
-        newWord += chr(ord(word[i]) - 1)
+	if i % 2 == 0:
+		newWord += chr(ord(word[i]) + 1)
+	else:
+		newWord += chr(ord(word[i]) - 1)
 print(newWord)

@@ -1,14 +1,14 @@
 # Read through the following code, and figure out what will print out each time
 
 def function1(a, b, c):
-    temp = a + b
-    c = temp * a
-    return c + b
+	temp = a + b
+	c = temp * a
+	return c + b
 
 
 def function2(c, b, a):
-    x = function1(a, b, c)
-    return x + b + 3
+	x = function1(a, b, c)
+	return x + b + 3
 
 
 answer1 = function1(1, 2, 3)

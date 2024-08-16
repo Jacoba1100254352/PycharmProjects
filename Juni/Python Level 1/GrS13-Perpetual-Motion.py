@@ -1,5 +1,6 @@
 import turtle
 
+
 t = turtle.Turtle()
 screen = turtle.Screen()
 
@@ -8,11 +9,11 @@ t.penup()
 
 
 def turnLeft():
-    t.left(5)
+	t.left(5)
 
 
 def turnRight():
-    t.right(5)
+	t.right(5)
 
 
 screen.onkey(turnLeft, "Left")
@@ -20,4 +21,4 @@ screen.onkey(turnRight, "Right")
 screen.listen()
 
 while True:
-    t.forward(1)
+	t.forward(1)

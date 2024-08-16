@@ -1,6 +1,7 @@
 import random
 import turtle
 
+
 turtle.colormode(255)
 t = turtle.Turtle()
 t.penup()
@@ -23,8 +24,8 @@ t.goto(x, y)
 t.pendown()
 t.begin_fill()
 for i in range(4):
-    t.forward(sideLength)
-    t.right(90)
+	t.forward(sideLength)
+	t.right(90)
 t.end_fill()
 
 t.penup()

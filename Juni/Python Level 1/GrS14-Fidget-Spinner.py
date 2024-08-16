@@ -2,6 +2,7 @@
 
 import turtle
 
+
 # setup drawing turtle and screen
 t = turtle.Turtle()
 t.ht()
@@ -17,15 +18,15 @@ turnSpeed = 0
 
 # flick() increases the turn speed
 def flick():
-    global turnSpeed
-    turnSpeed += 10
+	global turnSpeed
+	turnSpeed += 10
 
 
 # slow() decreases the turn speed
 def slow():
-    global turnSpeed
-    if turnSpeed > 0:
-        turnSpeed -= 10
+	global turnSpeed
+	if turnSpeed > 0:
+		turnSpeed -= 10
 
 
 # setup key listeners
@@ -41,60 +42,60 @@ writer.goto(200, 200)
 
 # main loop
 while True:
-    # clear our previous drawings
-    t.clear()
-
-    # get the angle that we will have to change by and rotate
-    angle = turnSpeed / 10
-    t.right(angle)
-
-    # draw the red circle side
-    t.color('black')
-    t.forward(100)
-    t.color('red')
-    t.begin_fill()
-    t.left(90)
-    for i in range(36):
-        t.forward(8)
-        t.right(10)
-    t.right(90)
-    t.end_fill()
-    t.color('black')
-    t.backward(100)
-    t.right(120)
-
-    # draw the green circle side
-    t.color('black')
-    t.forward(100)
-    t.color('green')
-    t.begin_fill()
-    t.left(90)
-    for i in range(36):
-        t.forward(8)
-        t.right(10)
-    t.right(90)
-    t.end_fill()
-    t.color('black')
-    t.backward(100)
-    t.right(120)
-
-    # draw the blue circle side
-    t.color('black')
-    t.forward(100)
-    t.color('blue')
-    t.begin_fill()
-    t.left(90)
-    for i in range(36):
-        t.forward(8)
-        t.right(10)
-    t.right(90)
-    t.end_fill()
-    t.color('black')
-    t.backward(100)
-    t.right(120)
-
-    # write turnSpeed
-    writer.clear()
-    writer.write("Turn Speed: " + str(turnSpeed))
-
-    screen.update()
+	# clear our previous drawings
+	t.clear()
+	
+	# get the angle that we will have to change by and rotate
+	angle = turnSpeed / 10
+	t.right(angle)
+	
+	# draw the red circle side
+	t.color('black')
+	t.forward(100)
+	t.color('red')
+	t.begin_fill()
+	t.left(90)
+	for i in range(36):
+		t.forward(8)
+		t.right(10)
+	t.right(90)
+	t.end_fill()
+	t.color('black')
+	t.backward(100)
+	t.right(120)
+	
+	# draw the green circle side
+	t.color('black')
+	t.forward(100)
+	t.color('green')
+	t.begin_fill()
+	t.left(90)
+	for i in range(36):
+		t.forward(8)
+		t.right(10)
+	t.right(90)
+	t.end_fill()
+	t.color('black')
+	t.backward(100)
+	t.right(120)
+	
+	# draw the blue circle side
+	t.color('black')
+	t.forward(100)
+	t.color('blue')
+	t.begin_fill()
+	t.left(90)
+	for i in range(36):
+		t.forward(8)
+		t.right(10)
+	t.right(90)
+	t.end_fill()
+	t.color('black')
+	t.backward(100)
+	t.right(120)
+	
+	# write turnSpeed
+	writer.clear()
+	writer.write("Turn Speed: " + str(turnSpeed))
+	
+	screen.update()
