@@ -48,15 +48,22 @@ for letter in "abcdefg":
     acceptableNotes.append(letter+"#")
 print(acceptableNotes)
 
+acceptableDuration = [1,2,4,8]
+
 mySong = []
 while True:
   note = input("Enter a note! or enter stop to stop: ").lower()
   while note not in acceptableNotes:
     note = input("Please enter a correct note! or enter stop to stop: ").lower()
-  
+
   if note == "stop":
     break
-  mySong.append((note,6))
+    
+  duration = int(input("Enter a duration: "))
+  while duration not in acceptableDuration:
+	duration = int(input("Please enter a correct duration: "))
+  
+  mySong.append((note,duration))
 
 
 

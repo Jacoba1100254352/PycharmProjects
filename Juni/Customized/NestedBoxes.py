@@ -24,9 +24,9 @@ for i in range(5):
 
 """
 size = 3
-numBoxes = 4
+NUM_BOXES = 4
 
-for _ in range(numBoxes):
+for _ in range(NUM_BOXES):
     for i in range(size):
         # Create each line
         for j in range(size):
@@ -42,9 +42,9 @@ for _ in range(numBoxes):
 
 """
 size = 3
-numBoxes = 4
+NUM_BOXES = 4
 
-for _ in range(numBoxes):
+for _ in range(NUM_BOXES):
   # Create front line of box
   print("#"*size)
 
@@ -60,18 +60,18 @@ for _ in range(numBoxes):
 
 """
 size = 3
-numBoxes = 4
+NUM_BOXES = 4
 
-for _ in range(numBoxes):
+for _ in range(NUM_BOXES):
   print("#"*size + "\n" + ("#" + " "*(size-2) + "#\n")*(size-2) + "#"*size + "\n")
   size += 1
 """
 
 """
 size = 3
-numBoxes = 4
+NUM_BOXES = 4
 
-for _ in range(numBoxes):
+for _ in range(NUM_BOXES):
   # Create front line of box
   for _ in range(size):
     print("#", end="")
@@ -93,10 +93,10 @@ for _ in range(numBoxes):
 
 """
 size = 3
-numBoxes = 4
+NUM_BOXES = 4
 outputString = ""
 
-for _ in range(numBoxes):
+for _ in range(NUM_BOXES):
   # Create front line of box
   for _ in range(size):
     outputString += "#"

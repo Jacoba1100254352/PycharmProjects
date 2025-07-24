@@ -27,7 +27,7 @@ shark.speedMultiplier = 1
 # make fish
 fish = []
 for i in range(10):
-	f = mod.Actor('fish', pos=(random.randint(0, WIDTH), random.randint(0, HEIGHT / 2)))
+	f = mod.Actor('fish', pos=(random.randint(0, WIDTH), random.randint(0, int(HEIGHT / 2))))
 	f.xspeed = random.uniform(1, 3)
 	fish.append(f)
 
@@ -48,12 +48,10 @@ def draw():
 		seaweed.draw()
 		shark.draw()
 		
-		mod.screen.draw.text("Fish Collected: " + str(score), midtop=(WIDTH / 2, 0), color=(255, 255, 255),
-		                     shadow=(2, 2))
+		mod.screen.draw.text("Fish Collected: " + str(score), midtop=(WIDTH / 2, 0), color=(255, 255, 255), shadow=(2, 2))
 	elif gameState == 'lose':
 		diver.draw()
-		mod.screen.draw.text("Game Over!\n\nPress Enter to Play Again \nor Escape to Quit!",
-		                     center=(WIDTH / 2, HEIGHT / 2), fontsize=35)
+		mod.screen.draw.text("Game Over!\n\nPress Enter to Play Again \nor Escape to Quit!", center=(WIDTH / 2, HEIGHT / 2), fontsize=35)
 
 
 def update():
@@ -117,7 +115,7 @@ def update():
 	# check if player collected fish
 	for f in fish:
 		if diver.colliderect(f):
-			f.pos = (-100, random.randint(0, HEIGHT / 2))
+			f.pos = (-100, random.randint(0, int(HEIGHT / 2)))
 			score += 1
 			mod.sounds.pop.play()
 
