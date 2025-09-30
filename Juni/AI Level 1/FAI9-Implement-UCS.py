@@ -8,7 +8,7 @@ class Node:
 		self.key = key
 		self.neighbors = {}
 	
-	# modified to take in edge weight and update neighborst dictionary
+	# modified to take in edge weight and update neighbors dictionary
 	def add_neighbor(self, node, weight):
 		self.neighbors[node.key] = weight
 	

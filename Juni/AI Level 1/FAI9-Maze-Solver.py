@@ -51,9 +51,9 @@ class Graph:
 	
 	# modified to create directed edges and take in a weight for the edge
 	def add_edge(self, node1, node2, weight):
-		if not node1.key in self.graph:
+		if node1.key not in self.graph:
 			print("Node with ID " + node1.key + " is not in the graph")
-		elif not node2.key in self.graph:
+		elif node2.key not in self.graph:
 			print("Node with ID " + node2.key + " is not in the graph")
 		else:
 			node1.add_neighbor(node2, weight)
@@ -74,7 +74,7 @@ class Graph:
 		print("DFS Traversal: ")
 		visited = {start_node}
 		stack = [(start_node, [start_node.key])]
-		while (len(stack) != 0):
+		while len(stack) != 0:
 			n, path = stack.pop()
 			
 			print(n.key)
@@ -87,12 +87,13 @@ class Graph:
 				if neighbor not in visited:
 					visited.add(neighbor)
 					stack.append((neighbor, path + [neighbor.key]))
+		return None
 	
 	def get_bfs_path(self, start_node, end_node):
 		print("BFS Traversal: ")
 		visited = {start_node}
 		queue = [(start_node, [start_node.key])]
-		while (len(queue) != 0):
+		while len(queue) != 0:
 			n, path = queue.pop(0)
 			print(n.key)
 			if n == end_node:
@@ -104,6 +105,7 @@ class Graph:
 				if neighbor not in visited:
 					visited.add(neighbor)
 					queue.append((neighbor, path + [neighbor.key]))
+		return None
 	
 	def get_ids_path(self, start_node, end_node, max_depth):
 		print("IDS Traversal: ")
@@ -111,6 +113,7 @@ class Graph:
 			path = self.get_dls_path(start_node, end_node, i)
 			if path != None:
 				return path
+		return None
 	
 	def get_dls_path(self, start_node, end_node, depth_limit):
 		print("\nDLS Traversal with Depth of " + str(depth_limit) + ": ")
@@ -128,6 +131,7 @@ class Graph:
 				if neighbor not in visited and depth + 1 <= depth_limit:
 					visited.add(neighbor)
 					stack.append((neighbor, depth + 1, path + [neighbor.key]))
+		return None
 	
 	def get_ucs_path(self, start_node, end_node):
 		print("UCS Traversal: ")
@@ -149,8 +153,9 @@ class Graph:
 					neighbor = self.graph[neighbor_key]
 					if neighbor not in visited:
 						q.put((n.neighbors[neighbor.key] + cost, neighbor, path + [neighbor.key]))
-				
-				# construct graph of the maze
+		
+		# construct graph of the maze
+		return None
 
 
 # names are "nodexy" where x is the row of the cell, y is the column of the cell

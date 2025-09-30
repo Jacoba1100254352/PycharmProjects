@@ -1,3 +1,21 @@
+class Stack:
+	
+	def __init__(self):
+		self.stack = []
+	
+	def push(self, element):
+		self.stack.append(element)
+	
+	def peek(self):
+		return self.stack[-1]
+	
+	def pop(self):
+		return self.stack.pop()
+	
+	def isEmpty(self):
+		return len(self.stack) == 0
+
+
 class Node:
 	
 	def __init__(self, key):
@@ -37,23 +55,39 @@ class Graph:
 			s += self.graph[node].__str__() + "\n\n"
 		return s
 	
-	# BFS
-	def bfs(self, start_node):
-		visited = {start_node}
-		queue = [start_node]
-		while queue:  # (len(queue) != 0)
-			n = queue.pop(0)
-			print(n.key + " ", end="")
-			for neighbor in n.neighbors:
-				if neighbor not in visited:
-					visited.add(neighbor)
-					queue.append(neighbor)
+	# iterative dfs using stack class
+	def dfs_with_stack_class(self, start_node):
+		# check if nodes exist in graph
+		if len(self.graph) == 0:
+			return
+		else:
+			visited = {start_node}
+			stack = Stack()
+			stack.push(start_node)
+			while (not stack.isEmpty()):
+				n = stack.pop()
+				print(n.key + " ", end="")
+				for neighbor in n.neighbors:
+					if neighbor not in visited:
+						visited.add(neighbor)
+						stack.push(neighbor)
 
 
-# initialize graph
-g = Graph()
+# test the Stack class
+s = Stack()
+s.push(1)
+s.push(2)
+s.push(3)
+print(s.peek())
+print(s.pop())
+print(s.pop())
+print(s.pop())
+print(s.isEmpty())
+print()
 
 # construct graph
+g = Graph()
+
 a = Node("a")
 b = Node("b")
 c = Node("c")
@@ -71,7 +105,7 @@ g.add_edge(a, c)
 g.add_edge(b, d)
 g.add_edge(b, e)
 
-# run BFS
-# expected output: a b c d e
-g.bfs(a)
+# run DFS with stack class
+# expected output: a c b e d
+g.dfs_with_stack_class(a)
 print()

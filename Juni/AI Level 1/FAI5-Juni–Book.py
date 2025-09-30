@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import networkx as nx
+
 class Node:
 	
 	def __init__(self, key):
@@ -58,7 +61,8 @@ class FriendGraph:
 
 
 # construct graph where everyone is in one group
-g1 = FriendGraph()
+# g1 = FriendGraph()
+g1 = nx.Graph()
 a1 = Node("a")
 b1 = Node("b")
 c1 = Node("c")
@@ -78,7 +82,8 @@ g1.add_edge(b1, c1)
 g1.add_edge(d1, e1)
 
 # construct graph with three groups of friends
-g2 = FriendGraph()
+# g2 = FriendGraph()
+g2 = nx.Graph()
 a2 = Node("a")
 b2 = Node("b")
 c2 = Node("c")
@@ -95,5 +100,13 @@ g2.add_edge(a2, b2)
 g2.add_edge(a2, c2)
 
 # test the count_groups() method
-print(g1.count_groups())  # returns 1
-print(g2.count_groups())  # returns 3
+# print(g1.count_groups())  # returns 1
+# print(g2.count_groups())  # returns 3
+
+nx.draw(g1, with_labels=True)
+plt.savefig("g1.png")
+plt.clf()
+
+nx.draw(g2, with_labels=True)
+plt.savefig("g2.png")
+plt.clf()
