@@ -86,8 +86,8 @@ def war(decks):
 
 # ----- Main simulation loop -----
 for _ in range(1000):
-	# Build a standard 52-card deck: 4 suits × ranks 1-13
-	dealingDeck = [rank for _ in range(4) for rank in range(1, 14)]
+	# Build a standard 52-card deck: 4 suits × cards 1-13
+	dealingDeck = [card for _ in range(4) for card in range(1, 14)]
 	random.shuffle(dealingDeck)  # Shuffle in place
 	
 	# Deal alternating cards to each player (index 0 is the top of the deck)

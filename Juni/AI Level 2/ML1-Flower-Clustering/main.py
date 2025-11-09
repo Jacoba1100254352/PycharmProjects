@@ -1,20 +1,26 @@
-from sklearn.cluster import KMeans
+"""
+Dataset: https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/639388c2cbc2120a14dcf466e85730eb8be498bb/iris.csv
+"""
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
 
 def draw_clustered_graph(k, X, clusters, centroids):
-  colors = ['r', 'g', 'b', 'y', 'c', 'm']
-  fig, ax = plt.subplots()
-  for i in range(k):
-    points = []
-    for j in range(len(X)):
-      if clusters[j] == i:
-        points.append(X[j])
-    points = np.array(points)
-    ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
-  ax.scatter(centroids[:, 0], centroids[:, 1], marker='*', s=200, c='#050505')
-  plt.savefig("clustered_graph.png")
+	colors = ['r', 'g', 'b', 'y', 'c', 'm']
+	fig, ax = plt.subplots()
+	for i in range(k):
+		points = []
+		for j in range(len(X)):
+			if clusters[j] == i:
+				points.append(X[j])
+		points = np.array(points)
+		ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
+	ax.scatter(centroids[:, 0], centroids[:, 1], marker='*', s=200, c='#050505')
+	plt.savefig("clustered_graph.png")
+
 
 # read in data
 data = pd.read_csv('iris.csv')
@@ -30,9 +36,9 @@ k = 3
 X = list(zip(petal_length, petal_width))
 
 km = KMeans(
-    n_clusters=k, init='random',
-    n_init=10, max_iter=300, 
-    tol=1e-04, random_state=0
+	n_clusters=k, init='random',
+	n_init=10, max_iter=300,
+	tol=1e-04, random_state=0
 )
 clusters = km.fit_predict(X)
 centroids = km.fit(X).cluster_centers_
