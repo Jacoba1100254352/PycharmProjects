@@ -1,3 +1,7 @@
+"""
+Copy in the code for each of the sorting functions that you have previously written. Using time.time() to measure start and end times, write several tests to measure how fast each algorithm runs in a variety of scenarios. For example, you might consider testing with lists of different sizes (10-20 numbers, 100 numbers, 1000 numbers, etc.), and with varying levels of randomness (completely random, completely sorted, mostly sorted, sorted but reversed, etc.).
+"""
+
 import time
 from random import randint
 

@@ -1,3 +1,7 @@
+"""
+Improve your AI further by making it look for “forks”, which are moves that create two possible options for winning. The AI should play a move that will result in a fork when possible, as well as recognize when the human player could possibly be creating a fork.
+"""
+
 import random
 import time
 
@@ -84,7 +88,7 @@ def AIPlayerMove(board):
 			return [1, 2]
 		if board[2][1] == ' ':
 			return [2, 1]
-		# return next(([i, j] for i, j in ((0, 1), (1, 0), (1, 2), (2, 1)) if board[i][j] == ' '), None)
+	# return next(([i, j] for i, j in ((0, 1), (1, 0), (1, 2), (2, 1)) if board[i][j] == ' '), None)
 	
 	# If the center is open, play it
 	if board[1][1] == " ":

@@ -1,3 +1,15 @@
+"""
+AM10 Project 1: Merge
+Write a function that takes in two sorted lists and returns a single sorted list made up of the elements of each of the two input lists.
+
+AM10 Project 2: Split
+Write a function that prints the input list if it has 1 or fewer things in it; otherwise, split the list in half and recursively call the function with each half.
+
+AM10 Project 3: Merge Sort
+Referencing the two previous functions that you have written, write a function that takes in an unsorted list and performs Merge Sort by recursively splitting the input list, and then merging both of the sorted halves of that input list.
+"""
+
+
 # This is a helper function to handle the merging part of Merge Sort
 def merge(listA, listB):
 	result = []

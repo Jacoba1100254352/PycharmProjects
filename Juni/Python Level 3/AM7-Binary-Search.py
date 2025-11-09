@@ -1,3 +1,12 @@
+"""
+Binary Search is an algorithm that looks for a target element in a sorted list. Write a function that takes in a sorted list and a number, and uses binary search to determine if that target number is in the list. The function returns True if the target value is in the list, and False otherwise.
+
+If you want to split the list, use the same syntax that you used for substrings!
+myList[i:] will grab the items starting at and including index i, all the way to the end of the list (the first index is inclusive).
+myList[:i] will grab the items starting at index 0 all the way up to but not including i (the second index is exclusive).
+"""
+
+
 def binSearchIter(lst, item):
 	low = 0
 	high = len(lst) - 1

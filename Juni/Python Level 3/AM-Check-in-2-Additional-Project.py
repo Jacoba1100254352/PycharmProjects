@@ -1,3 +1,7 @@
+"""
+Copy in the code for each of the sorting functions that you have previously written, and write some tests to determine how fast each algorithm runs in a given scenario. Some possible scenarios to consider testing would be when the list to be sorted is completely random, when it is already sorted, when it is sorted and reversed, and when it is a smaller or larger list (for example, 100 elements, 1,000 elements, 2,000 elements, etc.). Can you think of any other scenarios?
+"""
+
 import copy
 import random
 import time

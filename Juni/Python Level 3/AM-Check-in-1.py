@@ -85,6 +85,6 @@ def makeWord(keystrokes):
 	for letter in stack:
 		word += letter
 	return word
-	# alternative way to turn list into string in python
-	# return "".join(stack)
+# alternative way to turn list into string in python
+# return "".join(stack)
 # print("makeWord('ti#ger') ->", makeWord("ti#ger"))

@@ -1,3 +1,11 @@
+"""
+AM11 Project 1: Partition
+Write a function that takes in a list and a pivot, and returns three lists: a list that contains everything less than the pivot, a list that contains everything equal to the pivot, and a list that contains everything greater than the pivot. A function can return multiple things! You can do this by separating each of the things that you would like to return with a comma, like so: return thing1, thing2, thing3. Alternatively, you could return a list that contains each of those three separate lists.
+
+AM11 Project 2: Quicksort
+Write a function that takes in a list and sorts it using the Quicksort algorithm.
+"""
+
 import random
 
 

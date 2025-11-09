@@ -1,3 +1,8 @@
+"""
+Write a function that returns a list of all the possible substrings of the input string.
+"""
+
+
 def getSubstrings(string):
 	if len(string) == 0:
 		return [string]

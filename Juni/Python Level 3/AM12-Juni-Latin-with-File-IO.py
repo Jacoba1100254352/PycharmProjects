@@ -1,7 +1,11 @@
-f = open('input_no_punctuation.txt')
-lines = f.readlines()
-lines = [x.strip() for x in lines]
-f.close()
+"""
+To write a word in Juni Latin, move the very first letter to the end of the word and add "-ay". This may sound like Pig Latin, but Pig Latin is actually a bit more complicated! Read the sentences from input_no_punctuation.txt into the program, and run each word through your Juni Latin translate function to get a resulting sentence that is completely in Juni Latin. Think about what kind of input the function takes, and how you can prepare a string before passing it into the function. Write out the resulting translation to a file.
+Bonus: can you make your program handle input that contains punctuation like input_punctuation.txt?
+"""
+
+with open('input_no_punctuation.txt') as f:
+	lines = f.readlines()
+	lines = [x.strip() for x in lines]
 
 
 def translate(word):

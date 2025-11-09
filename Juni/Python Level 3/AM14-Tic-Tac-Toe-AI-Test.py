@@ -1,3 +1,7 @@
+"""
+Using the AI player that you developed, write a program that makes the AI play 1,000 games against the random computer player. Print out the number of ties, the number of random computer player wins, and the number of AI wins.
+"""
+
 import random
 
 

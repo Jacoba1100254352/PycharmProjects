@@ -1,3 +1,13 @@
+"""
+Write a program that contains each of the following functions:
+A function that takes in three numbers and returns the product of the numbers
+A function that takes in two numbers and returns their average (the sum of the numbers divided by the amount of numbers)
+A function that takes in a word and a letter, and returns how many times that letter occurs in the word
+A function that takes in an integer and returns how many digits are 7
+A function that takes in two numbers, a and b, and returns a to the power of b (remember that exponents just represent repeated multiplication)
+"""
+
+
 def product(a, b, c):
 	return a * b * c
 

@@ -1,3 +1,11 @@
+"""
+Write a program that takes in an input string from the user, and then outputs whether or not that input string is a valid word according to the Junian Language. A string is valid in Junian if:
+It has an even amount of characters.
+It contains at least 2 vowels.
+The first letter is different from the last letter.
+For example, "Juni" is valid in Junian.
+"""
+
 word = input("Please type in a word for verification: ")
 
 vowels = "aeiou"

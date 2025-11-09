@@ -1,3 +1,9 @@
+"""
+Write a program to compare the runtime speeds of Linear Search compared to Binary Search. To do this, generate a list containing 10,000 random numbers between 0 and 100,000. For Linear Search, start a timer and then use your Linear Search function to search for 1,000 random integers. Once it has finished looking for those 1,000 integers, print the amount of time it took for linear search to finish. Do the same thing for Binary Search. Is the one that you would expect to be faster truly faster? By how much?
+
+Hint: Remember that to run binary search, the list must be sorted first. You can use listName.sort() in order to sort your list.
+"""
+
 import random
 import time
 

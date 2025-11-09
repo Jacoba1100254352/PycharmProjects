@@ -1,3 +1,7 @@
+"""
+Write a program that tries to determine the random integer from 1 to 100 that the user mentally selected. The program should use Binary Search to determine which numbers it should guess. After the computer makes a guess, the user should say whether the correct number is above or below the computer’s guess.
+"""
+
 guess = 50
 low = 1
 high = 100

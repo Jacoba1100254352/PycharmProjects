@@ -1,3 +1,7 @@
+"""
+Using what you have learned about variables, strings, and input, create your own Mad Lib story. A Mad Lib consists of asking the user to enter words of different types (such as nouns, adjectives, verbs, etc.), and then using those words to fill in the story. If you have never heard of Mad Libs before, you can try one by clicking here. How would you collect the words in order to fill in the story? How would you put the user’s words with the words that don’t change?
+"""
+
 # Example mad lib: http://www.madtakes.com/libs/176.html
 adjective = input("Enter an adjective: ")
 adjective2 = input("Enter another adjective: ")

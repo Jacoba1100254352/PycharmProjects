@@ -1,3 +1,10 @@
+"""
+Write a function that takes in an integer and returns the equivalent of that number in binary. Do this iteratively as well as recursively.
+
+Note: If you are unfamiliar with binary numbers, speak to your instructor before attempting this project.
+"""
+
+
 # Convert to binary, iterative method
 def toBinaryIterative(number):
 	binary = ""

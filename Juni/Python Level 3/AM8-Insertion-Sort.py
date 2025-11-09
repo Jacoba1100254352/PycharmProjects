@@ -1,3 +1,10 @@
+"""
+Write a function that takes in a list of numbers and returns a list that has been sorted using the Insertion Sort algorithm. The steps of Insertion Sort are:
+Place the next number from the input list at the end of the output list
+Swap that number with the previous one until the previous number is less than or equal to the one we inserted
+Repeat until we have placed every number from the input list into the output list
+"""
+
 import random
 
 

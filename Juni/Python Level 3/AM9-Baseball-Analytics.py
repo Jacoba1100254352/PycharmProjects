@@ -1,3 +1,7 @@
+"""
+Use your sorting algorithm to sort through different statistics of 10 baseball superstars. If you prefer to not use the data provided in the starter code, then you can make up your own. You don't have to use real statistics, and you don’t have to use baseball players! If you would like to create your own data, start by creating a list that contains a name, followed by a few sortable characteristics. Create 10 of such lists, and place them all inside of a single list (so that there are 10 separate lists contained in one list). Modify your Bubble Sort algorithm to sort the list of players using one of the numerical columns that you created. Print out the names of the players in the order in which they have now been sorted.
+"""
+
 # List of baseball players with random stats
 p1 = ["B. Harper", .254, 27, 92]
 p2 = ["J. Soler", .256, 36, 91]

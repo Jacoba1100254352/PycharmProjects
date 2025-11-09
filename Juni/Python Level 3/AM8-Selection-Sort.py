@@ -1,3 +1,11 @@
+"""
+Write a function that takes in a list of numbers and returns a list that has been sorted using the Selection Sort algorithm. The steps of Selection Sort are:
+Loop through the input list
+Remove the minimum element
+Place the minimum element at the end of the output list
+Continue until the input list is empty
+"""
+
 import random
 
 

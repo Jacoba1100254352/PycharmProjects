@@ -1,3 +1,7 @@
+"""
+Write a recursive function that returns the sum of all the elements in the input list. After, write a recursive function that returns the maximum of all the elements in the input list.
+"""
+
 l = [1, 2, 3, 4, 5, 6]
 
 

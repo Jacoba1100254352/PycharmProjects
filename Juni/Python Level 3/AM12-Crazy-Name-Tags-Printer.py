@@ -1,3 +1,7 @@
+"""
+Write a program that asks the user for their name and stores it in a variable, and then writes that name to an output file with one letter on each line. After writing the name normally, write every other letter of the name (skipping the second letter, the fourth, the sixth, etc.). Finally, write the name to the output file backwards!
+"""
+
 x = input("What is your name? ")
 
 o = open("output.txt", "w+")

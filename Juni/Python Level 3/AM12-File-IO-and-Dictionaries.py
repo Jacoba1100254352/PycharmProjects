@@ -1,7 +1,10 @@
-f = open("input.txt")
-lines = f.readlines()
-lines = [line.strip() for line in lines]
-f.close()
+"""
+Read each line from the given input file into a dictionary. Every other line, starting from the first line, is a key, with the subsequent line being its value (in other words, odd number lines contain a key, and the even number lines contain the corresponding value).
+"""
+
+with open("input.txt") as f:
+	lines = f.readlines()
+	lines = [line.strip() for line in lines]
 
 d = {}
 

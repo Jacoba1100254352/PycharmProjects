@@ -1,3 +1,7 @@
+"""
+Write a program that reads in a text file containing a coordinate pair of numbers on each line, and then fills in a two-dimensional grid with an “o” at each of the coordinate locations listed in the text file. After the initial grid has been set up, generate the next step according to the rules of Conway’s Game of Life. Once the next step has been generated, set the original grid equal to the new one. Be sure to print out the new grid once it has been created! Make this process repeat forever.
+"""
+
 # IMPORTANT: GIVE MORE SPACE FOR THE CONSOLE SO THE GAME CAN PROPERLY DISPLAY
 
 import time

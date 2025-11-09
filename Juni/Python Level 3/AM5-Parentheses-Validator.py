@@ -1,3 +1,8 @@
+"""
+Write a function that takes in a string made up entirely of parentheses (), braces {}, and brackets [] (we’ll just call all of those things together “parentheses”), and returns True if the expression is valid, and False if it is not. An expression is valid if the parentheses are balanced; an example of an expression with balanced parentheses is “([]{})” as well as “((([])))”, while “([]{)}” is not balanced. In technical terms, each opening symbol has a corresponding closing symbol, and the pairs of parentheses are properly nested.
+"""
+
+
 # iterative way
 def parentheses(brackets):
 	dictionary = {"(": ")", "[": "]", "{": "}"}

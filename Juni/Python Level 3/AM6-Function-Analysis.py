@@ -1,3 +1,8 @@
+"""
+For each of the functions that are provided in the comments of the starter code, determine its time complexity and note it down in Big-O notation in a comment above each function, explaining how you arrived at the answer.
+"""
+
+
 # O(n) - we loop through all of the whole numbers from 0 up to n,
 # so this function has a linear runtime
 def f1(n):

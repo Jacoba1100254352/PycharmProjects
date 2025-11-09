@@ -1,3 +1,7 @@
+"""
+Each of the functions in the comments of the starter code represents how many operations some algorithm is performing, given the input size of n. Determine the Big-O notation of each of those functions, and write it in a comment after each of the functions.
+"""
+
 # f(n) = 12n^2 + n
 # O(n^2)
 

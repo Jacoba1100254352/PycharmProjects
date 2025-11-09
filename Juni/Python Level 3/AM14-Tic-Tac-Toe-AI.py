@@ -1,3 +1,7 @@
+"""
+Improve the strategy used by your computer player in the previous project by making it “think” rationally. Some things that your AI player should look out for are moves that would cause it to win, moves that would block the human player from immediately winning, and optimal board locations (the center is one of the most advantageous, followed by the corners).
+"""
+
 import random
 import time
 

@@ -1,3 +1,8 @@
+"""
+Write and test the functions described in the comments of the starter code!
+"""
+
+
 # (1) Write a function that takes in a list of numbers and returns a list with every number doubled.
 def double(numbers):
 	result = []

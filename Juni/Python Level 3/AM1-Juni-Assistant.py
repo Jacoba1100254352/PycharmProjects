@@ -1,3 +1,7 @@
+"""
+Write a program that first prints a numbered list of instructions that the assistant can understand, and then prompts the user to specify which operation should be performed, and then finally performs the instruction designated by the entered number. Make the assistant continue to ask for commands until the user selects the “Quit” instruction (which you will need to include in your list of valid commands).
+"""
+
 import datetime
 import random
 

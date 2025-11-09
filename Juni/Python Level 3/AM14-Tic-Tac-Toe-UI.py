@@ -1,3 +1,7 @@
+"""
+Create a one-player Tic Tac Toe game. The program should first randomly select whether the human player or the computer player gets to go first. Every time that someone takes a turn, be sure to update the grid afterwards. Your game should be able to determine when somebody wins or when there is a tie. In this project, the computer player should simply choose a random location among the ones that are remaining.
+"""
+
 import random
 import time
 
