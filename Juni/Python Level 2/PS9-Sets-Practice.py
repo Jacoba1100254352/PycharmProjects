@@ -1,3 +1,12 @@
+"""
+Create two sets. In each set, add 5 different random numbers between 1 and 10. Then, print out these two sets, the union of these two sets, and the intersection of these two sets.
+For your second random set, either print out "The number 1 is inside the second set" or "The number 1 is not inside the second set"
+Ask the user for a word. Then, use a set to print out all of the unique letters in the word and the number of unique letters in the word.
+Ask the user for another word. Print out the letters these two words have in common.
+Write a function that takes in a set of numbers and returns a set with only the even numbers from that set.
+Write a function that takes in a set of words and returns a set with only the words that have 3 letters in them.
+"""
+
 import random
 
 

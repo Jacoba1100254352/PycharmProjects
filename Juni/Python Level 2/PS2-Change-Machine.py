@@ -1,3 +1,7 @@
+"""
+Ask the user to type in how much money they have (in cents). Print out the number of quarters you can make in change with this amount of money, the number of quarters and dimes, and the number of quarters, dimes, nickels, and pennies. In this project, you must use loops and you are not allowed to use division!
+"""
+
 money = input("Tell me how much money you have (in cents), and I'll tell you how many quarters you can have. ")
 
 money = int(money)

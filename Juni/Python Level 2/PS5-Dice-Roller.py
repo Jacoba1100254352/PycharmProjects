@@ -1,3 +1,7 @@
+"""
+Write a function diceRoll() that returns a random value between 1 to 6. Using the function, simulate rolling two dice 1000 times and print the percentage of the results of getting each sum from 2 -12.
+"""
+
 import random
 
 

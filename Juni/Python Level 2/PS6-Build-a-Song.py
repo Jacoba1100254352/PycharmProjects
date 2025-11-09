@@ -1,3 +1,7 @@
+"""
+Use pysynth to program a song of your choice, programming the notes and their duration into a list!
+"""
+
 import pysynth
 
 

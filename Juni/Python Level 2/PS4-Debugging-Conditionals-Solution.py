@@ -1,3 +1,7 @@
+"""
+You and your friend, Kant D. Bugg, went to the arcade and won some tickets. The tickets can be exchanged for several different prizes, with the prices for each posted. Kant wrote a script to help you figure out what to buy, but the script seems to have some bugs and is producing incorrect results. Help Kant debug the script so you can figure out what prizes to buy with your tickets! You can copy and paste Kant's buggy code into your file from here: https://repl.it/@JuniLearning/PS4-Debugging-Conditionals.
+"""
+
 numTickets = int(input("How many tickets did you win? "))
 
 lollipopPrice = 10

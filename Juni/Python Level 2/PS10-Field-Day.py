@@ -1,3 +1,7 @@
+"""
+Today is field day, and your class is going to compete against another class in two games: kickball and capture the flag. Your classmates have asked you to write a program that will help them keep track of who is on the kickball team and who is on the capture the flag team. Your program should allow your classmates enter their names one at a time and choose whether they would like to be on the kickball team, the capture the flag team, both, or neither. At the end of the program, it should print out the roster for both teams. For simplicity, assume there are exactly 10 people in your class.
+"""
+
 kickball = []
 flag = []
 

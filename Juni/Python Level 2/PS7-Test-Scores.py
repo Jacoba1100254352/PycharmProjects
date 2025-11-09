@@ -1,3 +1,7 @@
+"""
+Your AP Computer Science A teacher would like to be able to store each of her student's test scores and average them. Write a program that firsts asks for the number of students and the number of tests they each took. Then, ask the user to enter in the test scores, storing each score in dictionary where the keys are the names of the students and the values are their lists of test scores. Print out both this dictionary and another dictionary that maps each student with their average test score.
+"""
+
 numStudents = int(input("Enter the number of students: "))
 numTests = int(input("Enter the number of tests each student took: "))
 

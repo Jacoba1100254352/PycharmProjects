@@ -1,3 +1,7 @@
+"""
+Ask the user to type in a number of days. The program should print out the number of years, months, weeks, and days this is equal to.
+"""
+
 days = int(input(
 	"Enter in a number of days, and I will tell you how many years, months (assuming 30 days), weeks, and days this is: "))
 

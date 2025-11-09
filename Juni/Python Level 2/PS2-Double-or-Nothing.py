@@ -1,3 +1,9 @@
+"""
+Program the game Double or Nothing! The user should start with $10 and be given the option to walk away or play double or nothing with all of their money. If they play, then simulate a coin flip, where heads doubles their money and tails means they lose it all. Keep playing until the player either walks away or loses!
+
+Note: To have the computer simulate a coin flip, have it pick a random number, either 0 or 1. To do this, import the random module at the beginning of your program, and then randNum = random.randint(0,1) will save a random number, either 0 or 1, in randNum.
+"""
+
 import random
 
 

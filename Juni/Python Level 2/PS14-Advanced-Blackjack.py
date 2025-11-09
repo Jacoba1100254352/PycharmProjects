@@ -1,3 +1,9 @@
+"""
+Program the game of Blackjack, as shown in the graphic below! Write out pseudocode in your code comments to plan out the program flow and data structures you'll need to set up.
+
+Note: This version is for advanced students only. It is significantly more involved, and finishing Simple Blackjack is sufficient for completing this module.
+"""
+
 import random
 import time
 

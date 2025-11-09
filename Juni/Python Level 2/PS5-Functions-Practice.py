@@ -1,3 +1,13 @@
+"""
+Write a function that takes in two numbers and returns their sum.
+Write a function that takes in two numbers and returns their difference.
+Write a function that takes in three numbers and returns the product of the numbers.
+Write a function that takes in two numbers and returns their average.
+Write a function that takes in a number and returns its factorial (you must use a loop!).
+Challenge: Write a function that takes in a base and a power and returns the value of the base raised to that power.
+"""
+
+
 def add(x, y):
 	return x + y
 

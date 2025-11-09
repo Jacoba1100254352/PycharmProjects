@@ -1,3 +1,7 @@
+"""
+Define a function that takes in a message and converts that message into morse code. (Make sure to put extra spaces in between your words.) Using the function, ask the user for a message and print out the translated message. Then, define a function that takes in a message and converts that message into musical morse code. Each dot should be a C for an eighth note, and each dash should be a C for a half note. Rest for a half note in between each word and an eighth note between each dot or dash. If you need help remembering how to use pysynth to create a "song", review your work on the Build a Song project from module 6!
+"""
+
 import pysynth
 
 

@@ -1,3 +1,15 @@
+"""
+Note that in the problems below, although a function may be described as functionName(), it may still need one or more inputs. It's up to you to define the function with the correct input(s)!
+Write a function isEven() that returns True if the input number is even and False if the input number is odd. Use this function to print all of the even numbers between 1 and 50.
+Write a function isOdd() that returns True if the input number is odd and False if the input number is even. Use this function to print all of the odd numbers between 1 and 50.
+Write a function isOdd2() that only uses the isEven() function in its implementation. Use this function to print all of the odd numbers between 1 and 50.
+Write a function isMultiple7() that returns True if the input number is a multiple of 7 and False otherwise. Use this function to print all of the multiples of 7 between 1 and 50.
+Write a function isMultiple14() that returns True if the input number is a multiple of 14 and False otherwise. Use this function to print all of the multiples of 14 between 1 and 50.
+Write a function isMultiple14v2() that only uses the isEven() and isMultiple7 functions in its implementation. Use this function to print all of the multiples of 14 numbers between 1 and 50.
+Challenge: Write a function isPrime() that returns True if the input number is a prime number and False otherwise. Use this function to print all of the prime numbers between 1 and 50.
+"""
+
+
 def isEven(n):
 	return n % 2 == 0
 

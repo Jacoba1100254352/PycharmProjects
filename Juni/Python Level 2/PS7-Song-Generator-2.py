@@ -1,3 +1,7 @@
+"""
+Use pysynth to build a song generator that asks the user to enter in notes and durations to add to the song! Make sure to use a dictionary in your code (notice that in the demo, the duration is inputted as "whole," "half," etc!
+"""
+
 import pysynth
 
 

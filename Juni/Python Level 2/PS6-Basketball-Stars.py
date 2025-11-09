@@ -1,3 +1,9 @@
+"""
+A common benchmark for a standout performance in a basketball game is a "triple double." In this program, we define a triple double as when a player achieves at least 10 points, rebounds, and assists in a single game. (In reality, this statistic also includes steals and blocks.) Write a program that stores the number of points, rebounds, and assists five players accumulated in a game, and print out which players achieved a triple double.
+
+Hint: Lists can contain more lists! In this program, you should have one list that holds five sublists. Each sublist should be initialized with three zeros (essentially open slots), to represent each stat. The slots will be filled in as the user inputs the game-related data.
+"""
+
 players = []
 numPlayers = 5
 

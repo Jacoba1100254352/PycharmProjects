@@ -1,3 +1,9 @@
+"""
+Get to know your instructor better! Both you (the student) and the instructor will enter five of your favorite foods. Then, your program should print out which favorite foods you both share. Be careful with spelling though - if you spell the same food differently, then the computer will think you mean different things!
+
+Challenge: Also have your program print out which foods only you like, and which foods only your instructor likes.
+"""
+
 studentFoods = set()
 instructorFoods = set()
 

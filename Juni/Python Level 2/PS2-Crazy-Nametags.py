@@ -1,3 +1,13 @@
+"""
+Ask the user for their name.
+Using a for loop, print out every letter in the name.
+Using a for loop, print out every other letter in the name.
+Using a for loop, print out every letter in the name backward.
+Using a while loop, print out every letter in the name.
+Using a while loop, print out every other letter in the name.
+Using a while loop, print out every letter in the name backward.
+"""
+
 name = input("What is your name? ")
 
 print("Spelling your name...")

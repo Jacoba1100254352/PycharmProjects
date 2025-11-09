@@ -1,3 +1,7 @@
+"""
+Write a program that prints out the following pattern, using as few lines of code as you can.
+"""
+
 for i in range(4):
 	size = i + 3
 	

@@ -1,3 +1,9 @@
+"""
+Use a nested for loop to print out each of the blocks of numbers shown in the graphic below!
+
+Note: To print something without a newline at the end in Python, use print("Hello", end="").
+"""
+
 import time
 
 

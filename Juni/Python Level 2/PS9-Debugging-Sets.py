@@ -1,3 +1,9 @@
+"""
+Your friend, Kant D. Bugg, is learning how to use sets and wrote a script for the game Capture the Flag. The script keeps track of who is on the field and who is in jail during the game. Unfortunately, his script has some bugs in it. Help Kant find the bugs and get his script running!
+
+Each time you run the code, read the error messages in the console. Each message will tell you which line to look for a bug, and even give you a hint about what the bug is. After you find and fix the bug, run the code again. Read the new error message and find the next bug, until the program runs fully! If you can't remember how to fix a certain line of code, look at one of your past projects for an example. You can copy and paste Kant's buggy code into your file from here: https://repl.it/@JuniLearning/PS9-Debugging-Sets.
+"""
+
 # Your friend, Kant D. Bugg, is learning how to use sets and wrote a script for the game Capture the Flag. The script keeps track of who is on the field and who is in jail during the game. Unfortunately, his script has some bugs in it. Help Kant find the bugs and get his script running!
 
 # Each time you run the code, read the error messages in the console. Each message will tell you which line to look for a bug, and even give you a hint about what the bug is.
@@ -49,8 +55,8 @@ while True:
 		print("Here are the players who are still on the field for team 2:")
 		for i in range(len(team2free)):
 			print(team2free[i])
-			
-			# Print everyone who is in jail
+		
+		# Print everyone who is in jail
 		print("Here are the players who are in jail:")
 		totalCaptured = team1captured.team2captured.union()
 		for name in totalCaptured:

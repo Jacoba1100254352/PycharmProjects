@@ -1,3 +1,7 @@
+"""
+Use pysynth to build a song generator that asks the user to enter in notes to add to the song!
+"""
+
 import pysynth
 
 

@@ -1,3 +1,7 @@
+"""
+A team just ran a 4x400 relay race, in which each of 4 runners ran one 400m lap around the track, and they recorded their individual times. Write a program that prompts each member of the team for their time (in seconds). Print out which of the runners had the fastest time. Print out the average time for each lap. Then, use conditionals to print out whether each runner was faster, slower, or the same as the average pace.
+"""
+
 print("Let's see how your team did in the 4x400 relay!")
 
 player1 = float(input("Runner 1, enter your time in seconds: "))

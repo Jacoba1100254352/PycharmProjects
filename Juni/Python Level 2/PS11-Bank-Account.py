@@ -1,3 +1,7 @@
+"""
+Program a Bank Account program, as shown in the graphic below! Write out pseudocode in your code comments to plan out the program flow and data structures you'll need to set up. (Note: Make sure the user can log back into their account after they log out!)
+"""
+
 accounts = {"janesmith": "secret123", "bobsmith": "programm3r"}
 balances = {"janesmith": 0, "bobsmith": 0}
 

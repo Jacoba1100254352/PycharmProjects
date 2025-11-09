@@ -1,3 +1,14 @@
+"""
+It’s Opening Day at Joe’s Donuts, and Joe has some special deals for his first customers. Your program should ask the user which number customer they were and then notify them of which deals they're being offered. Here are the rules for today:
+His first customer will receive free donuts for a year
+His first 12 customers will receive a dozen free donuts today (the first customer gets both free donuts for a year and an immediate dozen, so they should be notified of both)
+His first 200 customers can purchase their first dozen donuts for $1, but because customers #1-12 already received the first dozen for free, they should not be notified of this deal (it’s really for customers #13-200)
+Customer #144 wins free donuts for a month (144 is Joe’s favorite number) and should not be notified of the dozen donuts for $1 either
+Customers #201-500 can purchase their donuts for half price
+Everyone else can take advantage of Joe’s last opening day offer: buy two donuts, get the third free - only show this notification to people who haven’t received any other offers
+Every single customer should be notified of a year-round deal they can share with their friends: buy a dozen donuts, get the 13th free!
+"""
+
 print("Welcome to Opening Day at Joe's Donuts! We're so glad you're here, and we have some special surprises for you!")
 
 customerNumber = int(input("Which number customer were you? "))

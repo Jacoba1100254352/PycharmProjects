@@ -1,3 +1,7 @@
+"""
+Five students recently took an exam in their AP Computer Science course. The teacher would like to give the students feedback on how they all scored; specifically, she would like to tell the students the highest score, the lowest score, and the average score. The user will enter each of the five scores, and your program should print out the highest score, the lowest score, and the average score.
+"""
+
 sum = 0
 numStudents = 5
 

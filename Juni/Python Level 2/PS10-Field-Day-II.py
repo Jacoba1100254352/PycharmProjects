@@ -1,3 +1,7 @@
+"""
+This time, for field day, we have the names of 10 classmates stored in a list. We are going to randomly allocate 5 players into Team Red and 5 players into Team Blue. Write a program that randomly chooses one player from the remaining players to Team Red, and then one to Team Blue. Print out the roster for each time after each round of picking, and then print out the number of players remaining.
+"""
+
 import random
 
 

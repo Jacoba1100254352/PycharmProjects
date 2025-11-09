@@ -1,3 +1,10 @@
+"""
+Create a dictionary where there are five key-value pairs. Each key should be a word in English language and each value should be the word's definition. Then, print out the dictionary.
+Create a dictionary where the keys are the numbers 1 to 25 and the values are their squares. Then, print out the dictionary.
+Create a dictionary where the keys are the numbers 1 to 25 and the values are their factorials. Then, print out the dictionary. Try to write your factorial function from the other day from scratch!
+Challenge: Ask the user for a word. Create a dictionary where the keys are the letters in the word and the values are the number of times each letter appears in the word. Then, print out the dictionary.
+"""
+
 # Create a dictionary where there are five key-value pairs. Each key should be a word in English language and each value should the word's definition. Then, print out the dictionary.
 
 words = {}

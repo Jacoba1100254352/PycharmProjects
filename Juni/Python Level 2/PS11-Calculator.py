@@ -1,3 +1,8 @@
+"""
+Write functions for addition, subtraction, multiplication, division, modulus, factorial, and exponent. Then, use these functions in a calculator program, which allows the user to choose an operator, type in number(s) to perform this operation on, and see the result!
+"""
+
+
 def add(a, b):
 	return a + b
 

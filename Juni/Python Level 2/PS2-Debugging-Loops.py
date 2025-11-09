@@ -1,3 +1,9 @@
+"""
+Your friend, Kant D. Bugg, is learning how to use for loops and while loops and wrote a program to simulate a rocketship launch. His code contains some bugs, and he needs your help to debug it. Help Kant debug his code and get the rocketship launch simulator working! Remember to read Kant’s comments so you know what each piece of code is supposed to do.
+
+Each time you run the code, read the error messages in the console. Each message will tell you which line to look for a bug, and even give you a hint about what the bug is. After you find and fix the bug, run the code again. Read the new error message and find the next bug, until the program runs fully! If you can't remember how to fix a certain line of code, look at one of your past projects for an example. You can copy and paste Kant's buggy code into your file from here: https://repl.it/@JuniLearning/PS2-Debugging-Loops.
+"""
+
 # Ask the astronauts if they are ready to take off. Keep asking them until they say they are ready
 while input("Are we ready for takeoff yet?(Y/N): ") != "Y"
 	print("Rechecking critical systems...")

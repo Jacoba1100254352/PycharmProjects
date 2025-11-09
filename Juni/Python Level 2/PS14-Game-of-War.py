@@ -1,3 +1,7 @@
+"""
+Simulate a simple game of War! In this two-player card game, each player has a hand of shuffled cards. Each player plays the top card off of their hand, and the player with the higher card wins. For our simulation, have each player draw a card by picking a random number between 2 to 10; the player with the higher number wins that round. If it is a tie, then neither player wins. Play 10 rounds, printing out the results of each round, and then print out final scores (i.e. the total number of rounds won by each player). Use the time module to generate realistic pauses throughout the simulation!
+"""
+
 import random
 import time
 

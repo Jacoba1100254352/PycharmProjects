@@ -1,3 +1,7 @@
+"""
+Code a two-player Rock, Paper, Scissors game. First, set up the player1 and player2 variables to be rock, paper, or scissors. Then, print out "Player 1 wins," "Player 2 wins," or "It's a tie." Make sure to handle the case where one player accidentally types in an invalid input!
+"""
+
 user1 = input('Player 1, please pick rock, paper, or scissors: ')
 user2 = input('Player 2, please pick rock, paper, or scissors: ')
 

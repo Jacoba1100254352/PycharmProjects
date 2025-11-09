@@ -1,3 +1,7 @@
+"""
+In Mastermind, the user has to crack the secret code. The code is composed of 4 digits between 0 and 4. Every time the player guesses, the computer reveals how many digits were correct, and how many were close. A correct digit has the correct value, and is in the correct place. A close digit has the correct value but is in the wrong place. For example, if the secret code was 0412 and the user guessed 0143, there would be 1 correct (the 0), and 2 close (the 4 and 1).
+"""
+
 import random
 
 

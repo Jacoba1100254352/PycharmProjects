@@ -1,3 +1,7 @@
+"""
+You're given an encrypted string for a secret password: tavaenryvahwribyv. You know that in order to get to this encrypted version of the password, the original password was run through a Caesar cipher and then reversed. Without knowing the key for the Caesar cipher, write a program to undo this encryption by printing out all 26 possibilities of the original password, and then take a guess at which of the possibilities is most likely to have been somebody's password.
+"""
+
 password = "tavaenryvahwribyv"
 
 # reverse the string

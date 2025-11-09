@@ -1,3 +1,7 @@
+"""
+Program a Todo List program, as shown in the graphic below! Write out pseudocode in your code comments to plan out the program flow and data structures you'll need to set up.
+"""
+
 print("Welcome to your todo list!\n")
 tasks = []
 

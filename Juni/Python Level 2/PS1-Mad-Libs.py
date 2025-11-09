@@ -1,3 +1,7 @@
+"""
+Create your own mad lib by asking the user for any number of nouns, adjectives, verbs, or other types of words. Ask for at least five words. Then, print the mad lib with these words filled in!
+"""
+
 adjective = input("Enter an adjective: ")
 adjective2 = input("Enter another adjective: ")
 noun = input("Enter a noun: ")
