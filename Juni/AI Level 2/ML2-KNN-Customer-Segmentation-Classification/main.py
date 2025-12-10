@@ -20,8 +20,8 @@ def calculate_dist(a, b):
 
 
 def is_same(a, b):
-	for i in range(len(a)):
-		if a != b:
+	for first, second in zip(a, b):
+		if first != second:
 			return False
 	return True
 
@@ -45,8 +45,8 @@ def draw_clustered_graph(k, X, clusters, centroids):
 			if clusters[j] == i:
 				xpoints.append(X[j][0])
 				ypoints.append(X[j][1])
-		ax.scatter(xpoints, ypoints, s=7, c=colors[i])
-		print("Cluster Number: " + str(i) + " | Color: " + colors[i])
+		ax.scatter(xpoints, ypoints, s=7, c=colors[i % len(colors)])
+		print("Cluster Number: " + str(i) + " | Color: " + colors[i % len(colors)])
 	
 	xpoints = []
 	ypoints = []
@@ -161,7 +161,7 @@ max_label = -1
 max_count = -1
 for key in k2_neighbors_count:
 	if k2_neighbors_count[key] > max_count:
-		max_count = k2_neighbors_count
+		max_count = k2_neighbors_count[key]
 		max_label = key
 
 print(str(data_pt) + " is classified as part of cluster " + str(max_label))

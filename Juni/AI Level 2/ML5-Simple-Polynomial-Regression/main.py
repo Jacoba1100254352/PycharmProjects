@@ -29,8 +29,9 @@ plt.plot(x, x * coefs[0] + b, 'r')
 plt.savefig("linear.png")
 plt.clf()
 
-test = np.array([6]).reshape(-1, 1)
-print("Predicted value of y for x = 7: " + str(model.predict(test)[0]))
+test_value = 7
+test = np.array([test_value]).reshape(-1, 1)
+print("Predicted value of y for x = " + str(test_value) + ": " + str(model.predict(test)[0]))
 print()
 
 # try a polynomial model 
@@ -51,6 +52,6 @@ plt.plot(x, x * x * coefs[1] + x * coefs[0] + b, 'r')
 plt.savefig("polynomial.png")
 plt.clf()
 
-test = np.array([6]).reshape(-1, 1)
+test = np.array([test_value]).reshape(-1, 1)
 test_modified = PolynomialFeatures(degree=2, include_bias=False).fit_transform(test)
-print("Predicted value of y for x = 7: " + str(model.predict(test_modified)[0]))
+print("Predicted value of y for x = " + str(test_value) + ": " + str(model.predict(test_modified)[0]))

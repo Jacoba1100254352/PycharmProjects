@@ -25,6 +25,7 @@ def relu(x):
 	return max(0, x)
 
 
+
 x1 = 0
 x2 = 1
 b = 1

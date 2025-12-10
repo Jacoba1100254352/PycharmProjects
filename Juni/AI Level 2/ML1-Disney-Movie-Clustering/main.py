@@ -5,7 +5,7 @@ Dataset: https://www.kaggle.com/prateekmaj21/disney-movies
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from scilearn.cluster import KMeans
+from sklearn.cluster import KMeans
 
 
 def draw_clustered_graph(k, X, clusters, centroids):
@@ -17,7 +17,7 @@ def draw_clustered_graph(k, X, clusters, centroids):
 			if clusters[j] == i:
 				points.append(X[j])
 		points = np.array(points)
-		ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i])
+		ax.scatter(points[:, 0], points[:, 1], s=7, c=colors[i % len(colors)])
 	ax.scatter(centroids[:, 0], centroids[:, 1], marker='*', s=200, c='#050505')
 	plt.savefig("clustered_graph.png")
 

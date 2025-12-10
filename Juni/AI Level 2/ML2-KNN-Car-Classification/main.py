@@ -23,6 +23,7 @@ lug_boot = {"small": 0, "med": 1, "big": 2}
 safety = {"high": 1, "med": 2, "low": 3}
 cleanup_nums = {"buying": levels, "maintenance": levels, "doors": doors, "persons": persons, "lug boot": lug_boot, "safety": safety}
 
+# replace categories with numbers
 data.replace(cleanup_nums, inplace=True)
 
 # build feature vectors and labels
