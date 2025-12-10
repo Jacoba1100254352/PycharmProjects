@@ -27,14 +27,16 @@ data = data.drop('Country', axis=1)
 data = data.drop('Status', axis=1)
 data.dropna(inplace=True)
 
-data
+print("Dataset preview:")
+print(data.head())
+print()
 
 X = np.array(data.drop('Life expectancy ', axis=1))
 y = np.array(data['Life expectancy '])
 
-X
-
-y
+print("Feature matrix shape:", X.shape)
+print("Target vector shape:", y.shape)
+print()
 
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 model = LinearRegression()
