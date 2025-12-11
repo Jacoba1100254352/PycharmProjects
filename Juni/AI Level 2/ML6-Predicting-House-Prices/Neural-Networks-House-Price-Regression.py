@@ -19,42 +19,55 @@ from keras.datasets import boston_housing
 from keras.layers import Dense
 from sklearn.preprocessing import StandardScaler
 
-
-# load dataset and split into training and testing data
-# Dataset Info: https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html
+# ----------------------------- DATA LOADING -----------------------------
+# Load Boston Housing dataset; Keras returns train/test splits out of the box.
+# x_* are feature matrices (shape: [n_samples, 13]); y_* are target prices (MEDV).
 (x_train, y_train), (x_test, y_test) = boston_housing.load_data()
 
-# normalize data
+# ----------------------------- SCALING ----------------------------------
+# Standardize features: fit on train, apply same transform to test.
+# Centering and scaling improve NN training stability and speed.
 sc = StandardScaler()
 x_train = sc.fit_transform(x_train)
 x_test = sc.transform(x_test)
 
-# Regression model with a neural network
+# ----------------------------- MODEL ------------------------------------
+# Define a simple feedforward (Dense) regression network.
+# input_dim=13 matches the number of feature columns in Boston Housing.
 model = Sequential()
-model.add(Dense(8, input_dim=13, activation='relu'))  # input_dim = size of feature vector
-model.add(Dense(16, activation='relu'))
-model.add(Dense(1))
+model.add(Dense(8, input_dim=13, activation="relu"))   # Hidden layer 1
+model.add(Dense(16, activation="relu"))                # Hidden layer 2
+model.add(Dense(1))                                    # Output: single continuous value (price)
 
-# mse = mean squared error, mae = mean absolute error
-model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+# Compile with optimizer and loss/metrics for regression.
+# "mse" = mean squared error (training objective), "mae" = mean absolute error (reporting metric).
+model.compile(optimizer="rmsprop", loss="mse", metrics=["mae"])
 
-# split into validation and training data and train model
-history = model.fit(x_train, y_train, epochs=100)
+# ----------------------------- TRAINING ---------------------------------
+# Train the model for 100 epochs on the scaled training set.
+# Returns a History object with per-epoch loss/metrics in history.history.
+history = model.fit(x_train, y_train, epochs=100, verbose=0)
 
-# plot mean absolute error of training data
-plt.plot(history.history['mae'])
-plt.xlabel('epoch')
+# ----------------------------- MONITORING -------------------------------
+# Plot the mean absolute error (MAE) across epochs to inspect training dynamics.
+plt.plot(history.history["mae"])
+plt.xlabel("Epoch")
+plt.ylabel("MAE")
+plt.title("Training MAE")
 plt.show()
 
-# first value is mse (average error)
-# second value is mae (median error)
-model.evaluate(x_test, y_test)
+# ----------------------------- EVALUATION -------------------------------
+# Evaluate on the untouched test set.
+# Returns [loss, mae] = [MSE on test, MAE on test].
+model.evaluate(x_test, y_test, verbose=0)
 
-# plot predictions and actual values of test data
-y_pred = model.predict(x_test).flatten()
+# ----------------------------- PREDICTIONS ------------------------------
+# Predict on test features, then compare true vs. predicted with a scatter plot.
+y_pred = model.predict(x_test, verbose=0).flatten()
 plt.scatter(y_test, y_pred)
-plt.xlabel('True Values [MEDV]')
-plt.ylabel('Predictions [MEDV]')
+plt.xlabel("True Values [MEDV]")
+plt.ylabel("Predictions [MEDV]")
 lims = [0, 50]
-plt.plot(lims, lims)
+plt.plot(lims, lims)  # 45° reference line: perfect predictions would lie here.
+plt.title("True vs Predicted MEDV (Test Set)")
 plt.show()
