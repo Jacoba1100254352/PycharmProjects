@@ -19,7 +19,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
 
 # Load CSV dataset from URL
-filepath = 'https://static.junilearning.com/ai_level_2/life_expectancy.csv'
+# filepath = 'https://static.junilearning.com/ai_level_2/life_expectancy.csv'
+filepath = 'https://static.classes.jacobdanders.net/life_expectancy.csv'
 # dataset: https://www.kaggle.com/kumarajarshi/life-expectancy-who
 data = pd.read_csv(filepath)
 
