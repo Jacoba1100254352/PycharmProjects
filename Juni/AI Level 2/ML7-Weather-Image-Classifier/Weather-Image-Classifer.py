@@ -19,6 +19,7 @@ from keras.layers import Activation, Conv2D, Dense, Dropout, Flatten, MaxPooling
 from keras.models import Sequential
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.utils import get_file
+from keras.layers import Input
 
 
 """# New Section"""
@@ -43,7 +44,8 @@ test_generator = imagegen.flow_from_directory(test_dir, class_mode="categorical"
 model = Sequential()
 
 # 3 convolutional layers
-model.add(Conv2D(32, (3, 3), input_shape=(224, 224, 3)))
+model.add(Input(shape=(224, 224, 3)))
+model.add(Conv2D(32, (3, 3)))
 model.add(Activation("relu"))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
